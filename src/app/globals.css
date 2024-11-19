@@ -1,0 +1,6 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+.navbar-link {
+  color: white;
+  text-decoration: none;
+}
