@@ -17,10 +17,10 @@ const Navigation = () => {
 
         <NavbarToggle aria-controls="basic-navbar-nav" />
         <NavbarCollapse className="justify-content-end">
-          <Link href="/member" className="me-3 mb-2 navbar-link">
+          <Link href="/signUp" className="me-3 mb-2 navbar-link">
             Bli medlem
           </Link>
-          <Link href="/login" className="me-3 mb-2 navbar-link">
+          <Link href="/logIn" className="me-3 mb-2 navbar-link">
             Logga in
           </Link>
         </NavbarCollapse>
