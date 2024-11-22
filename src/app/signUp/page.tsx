@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 
 const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [generalError, setGeneralError] = useState<string | null>(null);
   const {
     handleSubmit,
     register,
@@ -31,12 +32,18 @@ const SignUp = () => {
 
   const onSignup: SubmitHandler<SignupCredentials> = async (data) => {
     setIsSubmitting(true);
+    setGeneralError(null);
 
     try {
       await signup(data.email, data.password);
       router.push("/");
     } catch (err) {
       if (err instanceof FirebaseError) {
+        setGeneralError(
+          err.code === "auth/email-already-in-use"
+            ? "E-posten används redan. Vänligen använd en annan."
+            : "Ett fel uppstod. Försök igen senare."
+        );
       }
 
       setIsSubmitting(false);
@@ -56,11 +63,21 @@ const SignUp = () => {
                 noValidate
                 className="mb-3"
               >
+                {generalError && (
+                  <div
+                    role="alert"
+                    aria-live="assertive"
+                    className="alert alert-danger"
+                  >
+                    {generalError}
+                  </div>
+                )}
+
                 <Form.Group controlId="email" className="mb-3">
                   <Form.Label>Epost</Form.Label>
                   <Form.Control
-                    placeholder="example-email.com"
-                    type="text"
+                    placeholder="exempel@email.com"
+                    type="email"
                     {...register("email", {
                       required: "Du måste ange en epost adress",
                       pattern: {

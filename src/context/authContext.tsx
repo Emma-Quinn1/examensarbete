@@ -1,6 +1,11 @@
 "use client";
 
-import { createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  UserCredential,
+} from "firebase/auth";
 
 import { createContext, PropsWithChildren, useEffect, useState } from "react";
 
@@ -9,6 +14,8 @@ import { MoonLoader } from "react-spinners";
 
 interface AuthContextType {
   signup: (email: string, password: string) => Promise<UserCredential>;
+  login: (email: string, password: string) => Promise<UserCredential>;
+  resetPassword: (email: string) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null);
@@ -20,6 +27,16 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
+  const login = (email: string, password: string) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
+  const resetPassword = (email: string) => {
+    return sendPasswordResetEmail(auth, email, {
+      url: window.location.origin + "/logIn",
+    });
+  };
+
   useEffect(() => {
     setLoading(false);
   }, []);
@@ -28,6 +45,8 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
     <AuthContext.Provider
       value={{
         signup,
+        login,
+        resetPassword,
       }}
     >
       {loading ? (

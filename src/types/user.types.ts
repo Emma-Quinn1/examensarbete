@@ -3,3 +3,12 @@ export type SignupCredentials = {
   password: string;
   confirmPassword: string;
 };
+
+export type LoginCredentials = {
+  email: string;
+  password: string;
+};
+
+export type ForgotPasswordCredentials = {
+  email: string;
+};
