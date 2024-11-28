@@ -36,6 +36,9 @@ const Navigation = () => {
                 <div className="dropdown-item">
                   <Link href="/updateProfile">Uppdatera profil</Link>
                 </div>
+                <div className="dropdown-item">
+                  <Link href="/relocate">Omplacera</Link>
+                </div>
               </NavDropdown>
             </>
           ) : (

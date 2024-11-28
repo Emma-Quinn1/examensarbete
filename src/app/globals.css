@@ -65,3 +65,26 @@ footer {
   font-size: 1.5rem;
   text-align: center;
 }
+
+#dropzone-wrapper {
+  cursor: pointer;
+  background-color: #444;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 2rem 1.25rem;
+  border-radius: 4px;
+  border: 2px dashed #ccc;
+  height: 10em;
+  width: 95%;
+}
+
+.progress {
+  font-size: 1rem;
+  height: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.alert {
+  margin-top: 1.5rem;
+}

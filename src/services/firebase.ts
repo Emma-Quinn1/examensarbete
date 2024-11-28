@@ -1,3 +1,5 @@
+import { NewPet, Pet } from "@/types/pet.types";
+import { Upload } from "@/types/upload.types";
 import { NewUser, User } from "@/types/user.types";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
@@ -7,6 +9,7 @@ import {
   collection,
   CollectionReference,
 } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -23,11 +26,16 @@ export const auth = getAuth(app);
 
 export const db = getFirestore(app);
 
+export const storage = getStorage(app);
+
 const createCollection = <T = DocumentData>(collectionName: string) => {
   return collection(db, collectionName) as CollectionReference<T>;
 };
 
 export const usersCol = createCollection<User>("users");
 export const newUserCol = createCollection<NewUser>("users");
+export const petsCol = createCollection<Pet>("pets");
+export const newPetsCol = createCollection<NewPet>("pets");
+export const uploadsCol = createCollection<Upload>("uploads");
 
 export default app;
