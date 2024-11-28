@@ -34,7 +34,7 @@ const Login = () => {
 
     try {
       await login(data.email, data.password);
-      router.push("/");
+      router.replace("/dashboard");
     } catch (err) {
       if (err instanceof FirebaseError) {
         setGeneralError(

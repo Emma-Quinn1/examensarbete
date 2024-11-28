@@ -1,46 +1,19 @@
-import Image from "next/image";
 import React from "react";
-import hero from "../img/hero.png";
-import Link from "next/link";
+import heroImage from "../img/hero.png";
+import Hero from "../components/hero";
 
 const Home = () => {
   return (
-    <div className="position-relative">
-      <div className="hero-image-wrapper">
-        <Image
-          src={hero}
-          alt="pets looking into the camera"
-          fill
-          objectFit="cover"
-          className="hero-image"
-        ></Image>
-
-        <div className="hero-overlay d-none d-md-block">
-          <h1 className="hero-text">Välkommen till FureverHome</h1>
-          <p className="text-center">
-            Ge ditt husdjur ett kärleksfullt hem - adoptera eller omplacera
-            idag!
-          </p>
-        </div>
-
-        <div className="hero-buttons-container d-flex flex-column flex-md-row row-gap-3 justify-content-center position-absolute top-50 start-50 translate-middle">
-          <Link
-            href="/signUp"
-            className="hero-buttons btn btn-primary"
-            role="button"
-          >
-            Bli medlem
-          </Link>
-
-          <Link
-            href="/logIn"
-            className="hero-buttons btn btn-primary"
-            role="button"
-          >
-            Logga in
-          </Link>
-        </div>
-      </div>
+    <>
+      <Hero
+        image={heroImage}
+        title="Välkommen till FurEverHome"
+        text="Ge ditt husdjur ett kärleksfullt hem - adoptera eller omplacera idag!"
+        links={[
+          { href: "/signUp", label: "Bli medlem" },
+          { href: "/logIn", label: "Logga in" },
+        ]}
+      />
 
       <div>
         <h2 className="mt-3 mb-4 ps-4 pe-4">Välkommen till FurEverHome</h2>
@@ -69,7 +42,7 @@ const Home = () => {
           Home&quot;.
         </p>
       </div>
-    </div>
+    </>
   );
 };
 

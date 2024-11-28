@@ -1,5 +1,12 @@
+import { NewUser, User } from "@/types/user.types";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import {
+  getFirestore,
+  DocumentData,
+  collection,
+  CollectionReference,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,5 +20,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
+
+export const db = getFirestore(app);
+
+const createCollection = <T = DocumentData>(collectionName: string) => {
+  return collection(db, collectionName) as CollectionReference<T>;
+};
+
+export const usersCol = createCollection<User>("users");
+export const newUserCol = createCollection<NewUser>("users");
 
 export default app;
