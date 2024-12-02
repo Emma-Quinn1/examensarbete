@@ -88,3 +88,16 @@ footer {
 .alert {
   margin-top: 1.5rem;
 }
+
+.card-img-top {
+  object-fit: cover;
+  height: 15rem;
+}
+
+.pet-name {
+  font-size: 2rem;
+}
+
+.pet-info {
+  font-size: 1.2rem;
+}

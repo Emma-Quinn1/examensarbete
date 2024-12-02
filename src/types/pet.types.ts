@@ -7,8 +7,8 @@ export type Pet = {
   location: string;
   type: string;
   breed: string;
-  imageUrl: string;
+  imageUrls: string[];
   path: string;
 };
 
-export type NewPet = Omit<Pet, "_id" | "imageUrl" | "imagePath">;
+export type NewPet = Omit<Pet, "_id" | "imageUrls" | "imagePath">;

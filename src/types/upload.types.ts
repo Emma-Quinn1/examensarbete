@@ -9,5 +9,5 @@ export type Upload = {
 };
 
 export type UploadImageProps = {
-  onUpload: (file: File) => void;
+  onUpload: (files: File[]) => void;
 };

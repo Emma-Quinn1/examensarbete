@@ -36,14 +36,9 @@ const useUploadImage = () => {
       );
       const uploadTask = uploadBytesResumable(storageRef, image);
 
-      uploadTask.on("state_changed", (snapshot) => {
-        setProgress(
-          Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 1000) /
-            10
-        );
+      await new Promise<void>((resolve, reject) => {
+        uploadTask.on("state_changed", null, reject, resolve);
       });
-
-      await uploadTask.then();
 
       const url = await getDownloadURL(storageRef);
       const docRef = doc(uploadsCol);
@@ -60,8 +55,13 @@ const useUploadImage = () => {
 
       setIsError(false);
       setIsSuccess(true);
-      setIsUploading(false);
       setProgress(null);
+
+      if (!url) {
+        throw new Error("Failed to get download URL for uploaded file.");
+      }
+
+      return url;
     } catch (err) {
       setIsError(true);
       setIsSuccess(false);

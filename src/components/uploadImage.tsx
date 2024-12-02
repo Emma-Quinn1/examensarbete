@@ -16,8 +16,12 @@ const UploadImage: React.FC<UploadImageProps> = ({ onUpload }) => {
         setGeneralError("Varning ⚠ Filen avvisad!");
         return;
       }
-      uploadImage.upload(acceptedFiles[0]);
-      onUpload(acceptedFiles[0]);
+
+      onUpload(acceptedFiles);
+
+      acceptedFiles.forEach((file) => {
+        uploadImage.upload(file);
+      });
     },
     [uploadImage, onUpload]
   );
@@ -29,7 +33,7 @@ const UploadImage: React.FC<UploadImageProps> = ({ onUpload }) => {
       "image/png": [],
       "image/webp": [],
     },
-    maxFiles: 1,
+    maxFiles: 10,
     maxSize: 4 * 1024 * 1024, // 4 MB
     onDrop,
   });

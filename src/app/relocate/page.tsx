@@ -9,7 +9,7 @@ import { NewPet } from "@/types/pet.types";
 
 const Relocate = () => {
   const { addPet } = usePet();
-  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [generalError, setGeneralError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -25,14 +25,18 @@ const Relocate = () => {
   const animalTypes = ["Hund", "Katt", "Kanin", "Fågel", "Hamster", "Marsvin"];
   const locations = ["Stockholm", "Göteborg", "Malmö", "Uppsala", "Västerås"];
 
-  const handleUpload = (file: File) => {
-    setImageFile(file);
+  const handleUpload = (files: File[]) => {
+    if (!files.length) {
+      setGeneralError("Du måste ladda upp minst en bild.");
+      return;
+    }
+    setImageFiles(files);
     setGeneralError(null);
   };
 
   const onAddPet: SubmitHandler<NewPet> = async (data) => {
-    if (!imageFile) {
-      setGeneralError("Du måste ladda upp en bild.");
+    if (!imageFiles.length) {
+      setGeneralError("Du måste ladda upp minst en bild.");
       return;
     }
 
@@ -40,9 +44,9 @@ const Relocate = () => {
     setGeneralError(null);
     setSuccessMessage(null);
     try {
-      await addPet(data, imageFile);
+      await addPet(data, imageFiles);
       setSuccessMessage("Annons för omplacering skapad!");
-      setImageFile(null);
+      setImageFiles([]);
       reset();
     } catch {
       setGeneralError("Ett fel uppstod. Försök igen.");

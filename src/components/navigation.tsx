@@ -39,6 +39,9 @@ const Navigation = () => {
                 <div className="dropdown-item">
                   <Link href="/relocate">Omplacera</Link>
                 </div>
+                <div className="dropdown-item">
+                  <Link href="/adopt">Adoptera</Link>
+                </div>
               </NavDropdown>
             </>
           ) : (
