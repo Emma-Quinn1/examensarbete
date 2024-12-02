@@ -101,3 +101,12 @@ footer {
 .pet-info {
   font-size: 1.2rem;
 }
+
+.adopt-container {
+  height: 15em;
+}
+
+.adopt-image {
+  width: auto;
+  height: auto;
+}

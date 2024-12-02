@@ -42,15 +42,17 @@ const PetDetails = () => {
           </div>
 
           {data.imageUrls?.length > 0 && (
-            <div className="container d-flex justify-content-center mt-5">
+            <div className="adopt-container d-flex justify-content-center mt-5">
               <Carousel>
                 {data.imageUrls.map((imageUrl, index) => (
                   <Carousel.Item key={index}>
                     <Image
+                      className="adopt-image"
                       src={imageUrl}
                       alt={`Bild ${index + 1}`}
                       width={320}
                       height={350}
+                      priority
                     />
                   </Carousel.Item>
                 ))}
