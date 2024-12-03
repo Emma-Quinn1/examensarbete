@@ -42,6 +42,12 @@ const Navigation = () => {
                 <div className="dropdown-item">
                   <Link href="/adopt">Adoptera</Link>
                 </div>
+                <div className="dropdown-item">
+                  <Link href="/blog/create">Skapa blogginlägg</Link>
+                </div>
+                <div className="dropdown-item">
+                  <Link href="/blog">Blogg</Link>
+                </div>
               </NavDropdown>
             </>
           ) : (
@@ -51,6 +57,9 @@ const Navigation = () => {
               </Link>
               <Link href="/logIn" className="me-3 mb-2 navbar-link">
                 Logga in
+              </Link>
+              <Link href="/blog" className="me-3 mb-2 navbar-link">
+                Blogg
               </Link>
             </>
           )}

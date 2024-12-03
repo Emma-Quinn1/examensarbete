@@ -3,16 +3,17 @@
 import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import useStreamDocument from "../../../hooks/useStreamDocument";
-import { petsCol } from "@/services/firebase";
+import { blogCol } from "@/services/firebase";
 import { Container, Card, Carousel } from "react-bootstrap";
 import Image from "next/image";
+import { Timestamp } from "firebase/firestore";
 
-const PetDetails = () => {
+const BlogDetails = () => {
   const router = useRouter();
   const params = useParams();
   const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
 
-  const { data, loading } = useStreamDocument(petsCol, slug);
+  const { data, loading } = useStreamDocument(blogCol, slug);
 
   useEffect(() => {
     if (!data && !loading) {
@@ -24,20 +25,15 @@ const PetDetails = () => {
     <Container className="py-2">
       {data && (
         <Card.Body>
-          <Card.Title className="mt-4 pet-name">{data.name}</Card.Title>
+          <Card.Title className="mt-4 pet-name">{data.title}</Card.Title>
 
           <div className="mt-4 pet-info">
-            <div className="mb-3">
-              <strong>Ras:</strong> {data.breed}
-            </div>
-            <div className="mb-3">
-              <strong>Ålder:</strong> {data.age} år
-            </div>
-            <div className="mb-3">
-              <strong>Befinner sig i:</strong> {data.location}
-            </div>
+            <div className="mb-3">{data.text}</div>
+            <div>{data.author}</div>
             <p>
-              <strong>Beskrivning:</strong> {data.description}
+              {data.created_at instanceof Timestamp
+                ? data.created_at.toDate().toLocaleString("sv-SE")
+                : "Okänt datum"}
             </p>
           </div>
 
@@ -68,4 +64,4 @@ const PetDetails = () => {
   );
 };
 
-export default PetDetails;
+export default BlogDetails;

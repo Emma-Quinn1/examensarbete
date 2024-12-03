@@ -1,3 +1,4 @@
+import { NewPost, Post } from "@/types/blog.types";
 import { NewPet, Pet } from "@/types/pet.types";
 import { Upload } from "@/types/upload.types";
 import { NewUser, User } from "@/types/user.types";
@@ -37,5 +38,7 @@ export const newUserCol = createCollection<NewUser>("users");
 export const petsCol = createCollection<Pet>("pets");
 export const newPetsCol = createCollection<NewPet>("pets");
 export const uploadsCol = createCollection<Upload>("uploads");
+export const blogCol = createCollection<Post>("posts");
+export const newBlogCol = createCollection<NewPost>("posts");
 
 export default app;
