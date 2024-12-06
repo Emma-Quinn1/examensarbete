@@ -4,7 +4,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import useStreamDocument from "../../../hooks/useStreamDocument";
 import { petsCol } from "@/services/firebase";
-import { Container, Card, Carousel } from "react-bootstrap";
+import { Container, Card, Carousel, Button } from "react-bootstrap";
 import Image from "next/image";
 
 const PetDetails = () => {
@@ -14,11 +14,38 @@ const PetDetails = () => {
 
   const { data, loading } = useStreamDocument(petsCol, slug);
 
+  const handleSendMessage = async (
+    recipientId: string | null,
+    recipientName: string | null
+  ) => {
+    try {
+      console.log("Skickar meddelande till:", { recipientId, recipientName });
+
+      if (recipientId && recipientName) {
+        router.push(
+          `/message?recipientId=${recipientId}&recipientName=${encodeURIComponent(
+            recipientName
+          )}`
+        );
+      } else {
+        console.error("Mottagarens ID eller namn saknas.");
+      }
+    } catch (error) {
+      console.error("Failed to initiate chat:", error);
+    }
+  };
+
   useEffect(() => {
     if (!data && !loading) {
       router.push("/404");
     }
   }, [data, loading, router]);
+
+  useEffect(() => {
+    if (data) {
+      console.log("Hämtad data.author:", data.author);
+    }
+  }, [data]);
 
   return (
     <Container className="py-2">
@@ -39,7 +66,23 @@ const PetDetails = () => {
             <p>
               <strong>Beskrivning:</strong> {data.description}
             </p>
+            <p>
+              <strong>Ägare: </strong>
+              {data.author.displayName || data.author.email}
+            </p>
           </div>
+
+          <Button
+            variant="primary"
+            onClick={() =>
+              handleSendMessage(
+                data.author.uid,
+                data.author.displayName || data.author.email
+              )
+            }
+          >
+            Skicka meddelande till ägaren
+          </Button>
 
           {data.imageUrls?.length > 0 && (
             <div className="adopt-container d-flex justify-content-center mt-5">

@@ -2,8 +2,17 @@ import { orderBy } from "firebase/firestore";
 import { blogCol } from "../services/firebase";
 import useStreamCollection from "./useStreamCollection";
 
-const useGetPets = () => {
-  return useStreamCollection(blogCol, orderBy("created_at", "desc"));
+const useGetPost = () => {
+  const { data, loading, error } = useStreamCollection(
+    blogCol,
+    orderBy("created_at", "desc")
+  );
+
+  return {
+    data: data || [],
+    loading,
+    error,
+  };
 };
 
-export default useGetPets;
+export default useGetPost;

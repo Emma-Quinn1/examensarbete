@@ -39,6 +39,11 @@ const usePet = () => {
         uid: currentUser.uid,
         imageUrls,
         path: `pets/${currentUser.uid}/`,
+        author: {
+          uid: currentUser.uid,
+          displayName: currentUser.displayName || "",
+          email: currentUser.email!,
+        },
       };
 
       await setDoc(doc(petsCol, petId), newPet);

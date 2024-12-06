@@ -9,6 +9,11 @@ export type Pet = {
   breed: string;
   imageUrls: string[];
   path: string;
+  author: {
+    uid: string;
+    displayName: string;
+    email: string;
+  };
 };
 
 export type NewPet = Omit<Pet, "_id" | "imageUrls" | "imagePath">;
