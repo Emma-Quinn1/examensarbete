@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Nav, Container, Row, Col } from "react-bootstrap";
 import useGetConversations from "@/hooks/useGetConversations";
 import useAuth from "@/hooks/useAuth";
 import MessageWindow from "../page";
@@ -22,43 +23,50 @@ const ChatApp = () => {
   };
 
   return (
-    <div className="chatContainer">
-      <div className="chatList">
-        <h2>Mina chattar</h2>
-        {loadingConversations ? (
-          <p>Laddar konversationer...</p>
-        ) : conversations?.length ? (
-          conversations.map((conversation) => {
-            const recipientId = conversation.participants.find(
-              (id) => id !== currentUserId
-            );
+    <Container fluid className="chat-container">
+      <Row className="align-items-center header-container p-3">
+        <Col md={3} className="text-center">
+          <h5>Mina Chattar</h5>
+        </Col>
+      </Row>
 
-            if (!recipientId) return null;
+      <Row>
+        <Col md={3} className="left-column">
+          <Nav className="flex-column mt-3 mb-3">
+            {loadingConversations ? (
+              <Nav.Link className="chat-links" disabled>
+                Laddar konversationer...
+              </Nav.Link>
+            ) : conversations?.length ? (
+              conversations.map((conversation) => {
+                const recipientId = conversation.participants.find(
+                  (id) => id !== currentUserId
+                );
 
-            const recipientName = users[recipientId] || "Laddar...";
-            return (
-              <div
-                key={conversation.id}
-                onClick={() => handleSelectConversation(recipientId)}
-                className="chatItem"
-              >
-                {recipientName}
-              </div>
-            );
-          })
-        ) : (
-          <p>Inga konversationer hittades.</p>
-        )}
-      </div>
+                if (!recipientId) return null;
 
-      <div className="chatWindow">
-        {activeConversation ? (
-          <MessageWindow {...activeConversation} />
-        ) : (
-          <p>Välj en konversation från listan till vänster.</p>
-        )}
-      </div>
-    </div>
+                const recipientName = users[recipientId] || "Laddar...";
+                return (
+                  <Nav.Link
+                    className="chat-links"
+                    key={conversation.id}
+                    onClick={() => handleSelectConversation(recipientId)}
+                  >
+                    {recipientName}
+                  </Nav.Link>
+                );
+              })
+            ) : (
+              <Nav.Link disabled>Inga konversationer hittades</Nav.Link>
+            )}
+          </Nav>
+        </Col>
+
+        <Col md={9} className="bg-light p-3">
+          {activeConversation && <MessageWindow {...activeConversation} />}
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

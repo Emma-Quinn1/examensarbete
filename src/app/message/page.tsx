@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { Form, Button } from "react-bootstrap";
+import { Form, Container, Row, Col } from "react-bootstrap";
 import { useForm, SubmitHandler } from "react-hook-form";
 import useGetMessages from "@/hooks/useGetMessages";
 import useMessage from "@/hooks/useMessage";
@@ -62,36 +62,54 @@ const MessageWindow: React.FC<{
   }
 
   return (
-    <div className="chatContainer">
-      <h1>Chatt med {recipientName}</h1>
+    <Container fluid className="chat-container">
+      <h3>Chatt med {recipientName}</h3>
 
-      {loading ? (
-        <p>Laddar meddelanden...</p>
-      ) : (
-        <div className="messages">
-          {messages?.map((msg) => (
-            <div
-              key={msg.id}
-              className={`message ${
-                msg.senderId === currentUserId ? "sent" : "received"
-              }`}
-            >
-              <p>{msg.message}</p>
+      <Row>
+        <Col className="content-container p-3">
+          {loading ? (
+            <p>Laddar meddelanden...</p>
+          ) : (
+            <div className="messages">
+              {messages?.map((msg) => (
+                <div
+                  key={msg.id}
+                  className={`message mb-4 d-flex ${
+                    msg.senderId === currentUserId
+                      ? "justify-content-end"
+                      : "justify-content-start"
+                  }`}
+                >
+                  <div
+                    className={`message-bubble mb-1 p-3 ${
+                      msg.senderId === currentUserId ? "sent" : "received"
+                    }`}
+                  >
+                    <p>{msg.message}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      )}
+          )}
 
-      <Form onSubmit={handleSubmit(onSendMessage)} className="messageForm">
-        <Form.Control
-          type="text"
-          placeholder="Skriv ett meddelande..."
-          {...register("message", { required: true })}
-          isInvalid={!!errors.message}
-        />
-        <Button type="submit">Skicka</Button>
-      </Form>
-    </div>
+          <Form
+            onSubmit={handleSubmit(onSendMessage)}
+            className="messageForm d-flex p-3 gap-3"
+          >
+            <Form.Control
+              type="text"
+              placeholder="Skriv ett meddelande..."
+              {...register("message", { required: true })}
+              isInvalid={!!errors.message}
+            />
+
+            <button type="submit" className="chat-btn">
+              Skicka
+            </button>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
