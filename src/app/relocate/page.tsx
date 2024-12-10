@@ -56,6 +56,10 @@ const Relocate = () => {
   };
 
   const onAddPet: SubmitHandler<NewPet> = async (data) => {
+    if (data.type === "Annat") {
+      data.breed = null;
+    }
+
     if (!imageFiles.length) {
       setGeneralError("Du måste ladda upp minst en bild.");
       return;

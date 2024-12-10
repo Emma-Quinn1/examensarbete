@@ -6,7 +6,7 @@ export type Pet = {
   uid: string;
   location: string;
   type: string;
-  breed: string;
+  breed: string | null;
   imageUrls: string[];
   path: string;
   author: {

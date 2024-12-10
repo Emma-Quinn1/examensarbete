@@ -37,7 +37,25 @@ const useUploadImage = () => {
       const uploadTask = uploadBytesResumable(storageRef, image);
 
       await new Promise<void>((resolve, reject) => {
-        uploadTask.on("state_changed", null, reject, resolve);
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progress =
+              Math.round(
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 1000
+              ) / 10;
+            setProgress(progress);
+          },
+          (error) => {
+            setError(error.message);
+            setIsError(true);
+            setIsUploading(false);
+            reject(error);
+          },
+          () => {
+            resolve();
+          }
+        );
       });
 
       const url = await getDownloadURL(storageRef);
