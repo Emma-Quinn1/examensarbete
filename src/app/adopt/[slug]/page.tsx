@@ -6,11 +6,13 @@ import useStreamDocument from "../../../hooks/useStreamDocument";
 import { petsCol } from "@/services/firebase";
 import { Container, Card, Carousel, Button } from "react-bootstrap";
 import Image from "next/image";
+import useAuth from "@/hooks/useAuth";
 
 const PetDetails = () => {
   const router = useRouter();
   const params = useParams();
   const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
+  const { currentUser } = useAuth();
 
   const { data, loading } = useStreamDocument(petsCol, slug);
 
@@ -73,6 +75,7 @@ const PetDetails = () => {
           </div>
 
           <Button
+            disabled={currentUser?.uid === data.author.uid}
             variant="primary"
             onClick={() =>
               handleSendMessage(
