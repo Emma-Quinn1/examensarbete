@@ -28,3 +28,8 @@ export type AnimalType = {
   type: string;
   _id: string;
 };
+
+export type OptionType = {
+  value: string;
+  label: string;
+};
