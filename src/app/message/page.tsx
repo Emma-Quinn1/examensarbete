@@ -26,7 +26,7 @@ const MessageWindow: React.FC<{
       ? generateConversationId(currentUserId, recipientId)
       : "";
 
-  const { data: messages, loading } = useGetMessages(conversationId);
+  const { data: messages, loading } = useGetMessages();
 
   const {
     handleSubmit,
@@ -37,7 +37,7 @@ const MessageWindow: React.FC<{
 
   const onSendMessage: SubmitHandler<NewMessage> = async (data) => {
     if (!recipientId) {
-      console.error("Mottagarens ID saknas.");
+      throw new Error("Mottagarens ID saknas.");
       return;
     }
 
@@ -51,7 +51,9 @@ const MessageWindow: React.FC<{
       await addMessage(newMessage);
       reset();
     } catch (error) {
-      console.error("Failed to send message:", error);
+      throw new Error(
+        `Misslyckades att skicka meddelande: ${error instanceof Error}`
+      );
     }
   };
 
@@ -71,24 +73,26 @@ const MessageWindow: React.FC<{
             <p>Laddar meddelanden...</p>
           ) : (
             <div className="messages">
-              {messages?.map((msg) => (
-                <div
-                  key={msg.id}
-                  className={`message mb-4 d-flex ${
-                    msg.senderId === currentUserId
-                      ? "justify-content-end"
-                      : "justify-content-start"
-                  }`}
-                >
+              {messages
+                ?.filter((msg) => msg.conversationId === conversationId)
+                .map((msg) => (
                   <div
-                    className={`message-bubble mb-1 p-3 ${
-                      msg.senderId === currentUserId ? "sent" : "received"
+                    key={msg._id}
+                    className={`message mb-4 d-flex ${
+                      msg.senderId === currentUserId
+                        ? "justify-content-end"
+                        : "justify-content-start"
                     }`}
                   >
-                    <p>{msg.message}</p>
+                    <div
+                      className={`message-bubble mb-1 p-3 ${
+                        msg.senderId === currentUserId ? "sent" : "received"
+                      }`}
+                    >
+                      <p>{msg.message}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           )}
 

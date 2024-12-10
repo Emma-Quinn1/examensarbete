@@ -17,6 +17,15 @@ const ChatApp = () => {
 
   const { conversations, loadingConversations, users } = useGetConversations();
 
+  const userConversations =
+    conversations?.filter((conversation) =>
+      currentUserId ? conversation.participants.includes(currentUserId) : false
+    ) || [];
+
+  const uniqueConversations = Array.from(
+    new Map(userConversations.map((conv) => [conv._id, conv])).values()
+  );
+
   const handleSelectConversation = (recipientId: string) => {
     const recipientName = users[recipientId] || "Laddar...";
     setActiveConversation({ recipientId, recipientName });
@@ -37,8 +46,8 @@ const ChatApp = () => {
               <Nav.Link className="chat-links" disabled>
                 Laddar konversationer...
               </Nav.Link>
-            ) : conversations?.length ? (
-              conversations.map((conversation) => {
+            ) : uniqueConversations.length ? (
+              uniqueConversations.map((conversation) => {
                 const recipientId = conversation.participants.find(
                   (id) => id !== currentUserId
                 );
@@ -49,7 +58,7 @@ const ChatApp = () => {
                 return (
                   <Nav.Link
                     className="chat-links"
-                    key={conversation.id}
+                    key={conversation._id}
                     onClick={() => handleSelectConversation(recipientId)}
                   >
                     {recipientName}

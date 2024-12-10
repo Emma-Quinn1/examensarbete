@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { getDocs, limit, query, where } from "firebase/firestore";
 import { conversationCol, usersCol } from "@/services/firebase";
 import useStreamCollection from "@/hooks/useStreamCollection";
@@ -12,24 +12,31 @@ const useConversations = () => {
   const { data: conversations, loading: loadingConversations } =
     useStreamCollection(conversationCol);
 
-  const fetchUserName = async (userId: string) => {
-    if (users[userId]) return users[userId];
-    const userQuery = query(usersCol, where("uid", "==", userId), limit(1));
-    const userDocs = await getDocs(userQuery);
+  const fetchUserName = useCallback(
+    async (userId: string) => {
+      if (users[userId]) return users[userId];
+      const userQuery = query(usersCol, where("uid", "==", userId), limit(1));
+      const userDocs = await getDocs(userQuery);
 
-    if (!userDocs.empty) {
-      const userData = userDocs.docs[0].data();
-      const displayName = userData.name || userData.email || "Okänt namn";
-      setUsers((prev) => ({ ...prev, [userId]: displayName }));
-      return displayName;
-    }
-    return "Okänt namn";
-  };
+      if (!userDocs.empty) {
+        const userData = userDocs.docs[0].data();
+        const displayName = userData.name || userData.email || "Okänt namn";
+        setUsers((prev) => ({ ...prev, [userId]: displayName }));
+        return displayName;
+      }
+      return "Okänt namn";
+    },
+    [users]
+  );
 
   useEffect(() => {
-    if (!conversations) return;
+    if (!conversations || !currentUserId) return;
 
-    conversations.forEach((conversation) => {
+    const userConversations = conversations.filter((conversation) =>
+      conversation.participants.includes(currentUserId)
+    );
+
+    userConversations.forEach((conversation) => {
       const recipientId = conversation.participants.find(
         (id) => id !== currentUserId
       );
@@ -38,7 +45,7 @@ const useConversations = () => {
         fetchUserName(recipientId);
       }
     });
-  }, [conversations, currentUserId]);
+  }, [conversations, currentUserId, fetchUserName, users]);
 
   return { conversations, loadingConversations, users };
 };

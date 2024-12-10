@@ -34,12 +34,13 @@ const useMessage = () => {
       currentUser.uid,
       messageData.recipientId
     );
+
     const messageId = uuidv4();
 
     try {
       const newMessage: Message = {
         ...messageData,
-        id: messageId,
+        _id: messageId,
         senderId: currentUser.uid,
         sent_at: serverTimestamp(),
         conversationId,
@@ -57,7 +58,7 @@ const useMessage = () => {
         });
       } else {
         await setDoc(conversationRef, {
-          id: conversationId,
+          _id: conversationId,
           participants: [currentUser.uid, messageData.recipientId],
           lastMessage: messageData.message,
           updated_at: serverTimestamp(),

@@ -1,7 +1,7 @@
 import { FieldValue, Timestamp } from "firebase/firestore";
 
 export type Message = {
-  id: string;
+  _id: string;
   senderId: string;
   recipientId: string;
   message: string;
@@ -12,7 +12,7 @@ export type Message = {
 export type NewMessage = Omit<Message, "id" | "sent_at" | "senderId">;
 
 export type Conversation = {
-  id: string;
+  _id: string;
   participants: string[];
   lastMessage: string;
   updated_at: Timestamp;
