@@ -17,3 +17,14 @@ export type Pet = {
 };
 
 export type NewPet = Omit<Pet, "_id" | "imageUrls" | "imagePath">;
+
+export type Breed = {
+  name: string;
+  _id: string;
+  type: string;
+};
+
+export type AnimalType = {
+  type: string;
+  _id: string;
+};

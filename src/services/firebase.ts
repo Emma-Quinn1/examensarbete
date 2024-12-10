@@ -1,6 +1,7 @@
 import { NewPost, Post } from "@/types/blog.types";
+import { LocationType } from "@/types/location.types";
 import { Conversation, Message } from "@/types/message.types";
-import { NewPet, Pet } from "@/types/pet.types";
+import { AnimalType, Breed, NewPet, Pet } from "@/types/pet.types";
 import { Upload } from "@/types/upload.types";
 import { NewUser, User } from "@/types/user.types";
 import { initializeApp } from "firebase/app";
@@ -43,5 +44,8 @@ export const blogCol = createCollection<Post>("posts");
 export const newBlogCol = createCollection<NewPost>("posts");
 export const messageCol = createCollection<Message>("messages");
 export const conversationCol = createCollection<Conversation>("conversations");
+export const breedsCol = createCollection<Breed>("breeds");
+export const animalTypeCol = createCollection<AnimalType>("animalType");
+export const locationsCol = createCollection<LocationType>("locations");
 
 export default app;

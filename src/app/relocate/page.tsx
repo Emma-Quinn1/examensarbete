@@ -5,7 +5,10 @@ import UploadImage from "../../components/uploadImage";
 import usePet from "@/hooks/usePet";
 import { Form, Button, Container, Row, Col, Card } from "react-bootstrap";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { NewPet } from "@/types/pet.types";
+import { Breed, NewPet } from "@/types/pet.types";
+import useGetBreed from "@/hooks/useGetBreed";
+import useGetType from "@/hooks/useGetType";
+import useGetLocations from "@/hooks/useGetLocations";
 
 const Relocate = () => {
   const { addPet } = usePet();
@@ -13,17 +16,35 @@ const Relocate = () => {
   const [generalError, setGeneralError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [filteredBreeds, setFilteredBreeds] = useState<
+    Breed[] | null | undefined
+  >(null);
+
   const {
     handleSubmit,
     register,
     reset,
+    watch,
     formState: { errors },
   } = useForm<NewPet>({
     mode: "onBlur",
   });
 
-  const animalTypes = ["Hund", "Katt", "Kanin", "Fågel", "Hamster", "Marsvin"];
-  const locations = ["Stockholm", "Göteborg", "Malmö", "Uppsala", "Västerås"];
+  const selectedType = watch("type");
+
+  const { data: breeds } = useGetBreed();
+
+  const { data: animalTypes } = useGetType();
+
+  const { data: locations } = useGetLocations();
+
+  const handleTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newFilteredBreeds = breeds?.filter(
+      (breed) => breed.type === e.target.value
+    );
+
+    setFilteredBreeds(newFilteredBreeds);
+  };
 
   const handleUpload = (files: File[]) => {
     if (!files.length) {
@@ -54,6 +75,7 @@ const Relocate = () => {
       setIsSubmitting(false);
     }
   };
+
   return (
     <Container className="py-3 center-y">
       <Row>
@@ -87,16 +109,19 @@ const Relocate = () => {
                   <Form.Label>Vilket djur</Form.Label>
                   <Form.Select
                     {...register("type", {
-                      required: "Du måste välja en typ av djur",
+                      required: "Du måste välja ett djur",
                     })}
+                    onChange={handleTypeChange}
                   >
                     <option value="">Välj typ av djur</option>
-                    {animalTypes.map((animal) => (
-                      <option key={animal} value={animal}>
-                        {animal}
-                      </option>
-                    ))}
+                    {animalTypes &&
+                      animalTypes.map((animal) => (
+                        <option key={animal._id} value={animal.type}>
+                          {animal.type}
+                        </option>
+                      ))}
                   </Form.Select>
+
                   {errors.type && (
                     <p className="invalid">
                       {errors.type.message || "Ogiltligt värde"}
@@ -159,13 +184,28 @@ const Relocate = () => {
 
                 <Form.Group controlId="breed" className="mb-3">
                   <Form.Label>Ras</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Vilken ras?"
+                  <Form.Select
                     {...register("breed", {
-                      required: "Du måste ange en ras",
+                      required:
+                        selectedType !== "Annat"
+                          ? "Du måste välja en ras"
+                          : false,
                     })}
-                  />
+                    disabled={
+                      selectedType === "Annat" ||
+                      !filteredBreeds ||
+                      filteredBreeds.length === 0
+                    }
+                  >
+                    <option value="">Välj ras</option>
+                    {filteredBreeds &&
+                      filteredBreeds.map((breed) => (
+                        <option key={breed._id} value={breed.name}>
+                          {breed.name}
+                        </option>
+                      ))}
+                  </Form.Select>
+
                   {errors.breed && (
                     <p className="invalid">
                       {errors.breed.message || "Ogiltligt värde"}
@@ -181,11 +221,12 @@ const Relocate = () => {
                     })}
                   >
                     <option value="">Välj plats</option>
-                    {locations.map((loc) => (
-                      <option key={loc} value={loc}>
-                        {loc}
-                      </option>
-                    ))}
+                    {locations &&
+                      locations.map((loc) => (
+                        <option key={loc._id} value={loc.name}>
+                          {loc.name}
+                        </option>
+                      ))}
                   </Form.Select>
                   {errors.location && (
                     <p className="invalid">
