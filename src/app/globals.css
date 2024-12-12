@@ -110,3 +110,48 @@ footer {
   width: auto;
   height: auto;
 }
+
+.pagination-button {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #fff;
+  border: 1px solid #ccc;
+  color: black;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0 0.5rem;
+}
+
+.pagination-button.next .icon-rotate {
+  transform: rotate(180deg);
+}
+
+.pagination-dots {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: default;
+}
+
+.pagination-number {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0 0.25rem;
+  border: 1px solid #ccc;
+  background: none;
+}
+
+.pagination-number.active {
+  background: linear-gradient(to right, #9bdf9b, #86b286);
+  border: none;
+  color: white;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}

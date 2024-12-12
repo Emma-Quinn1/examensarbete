@@ -1,9 +1,8 @@
 "use client";
 
-import Pagination from "@/components/pagination";
 import useAuth from "@/hooks/useAuth";
 import useGetPets from "@/hooks/useGetPets";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { MoonLoader } from "react-spinners";
@@ -13,6 +12,7 @@ import useGetType from "@/hooks/useGetType";
 import { MultiValue } from "react-select";
 import { OptionType } from "@/types/pet.types";
 import Select from "react-select";
+import { CustomPagination } from "../../components/pagination";
 
 const Adopt = () => {
   const { currentUser } = useAuth();
@@ -20,8 +20,15 @@ const Adopt = () => {
   const { data: animalTypes } = useGetType();
 
   const router = useRouter();
-  const [currentPage, setCurrentPage] = useState(1);
+  const searchParams = useSearchParams();
+
+  const currentPage = Number(searchParams.get("page")) || 1;
+
   const pageSize = 9;
+
+  const goToPage = (pageNumber: number) => {
+    router.push(`/adopt?page=${pageNumber}`);
+  };
 
   const [selectedTypes, setSelectedTypes] = useState<OptionType[]>([]);
 
@@ -119,13 +126,10 @@ const Adopt = () => {
       </Container>
 
       {totalPages > 1 && (
-        <Pagination
-          hasPreviousPage={currentPage > 1}
-          hasNextPage={currentPage < totalPages}
-          onNextPage={() => setCurrentPage((prevPage) => prevPage + 1)}
-          onPreviousPage={() => setCurrentPage((prevPage) => prevPage - 1)}
-          page={currentPage}
-          totalPages={totalPages}
+        <CustomPagination
+          total={totalPages}
+          currentPage={currentPage}
+          onPageChange={goToPage}
         />
       )}
     </>

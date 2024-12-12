@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nextui-org/react": "^2.6.8",
     "bootstrap": "^5.3.3",
     "dotenv": "^16.4.5",
     "firebase": "^10.13.0",
