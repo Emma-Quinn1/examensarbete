@@ -3,16 +3,24 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { MoonLoader } from "react-spinners";
 import useGetPosts from "@/hooks/useGetPosts";
-import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import placeholder from "@/img/thumb-medium.png";
-import Pagination from "@/components/pagination";
+import { CustomPagination } from "../../components/pagination";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Blog = () => {
   const { data, loading } = useGetPosts();
-  const [currentPage, setCurrentPage] = useState(1);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const currentPage = Number(searchParams.get("page")) || 1;
+
   const pageSize = 9;
+
+  const goToPage = (pageNumber: number) => {
+    router.push(`/blog?page=${pageNumber}`);
+  };
 
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
@@ -70,13 +78,10 @@ const Blog = () => {
       </Container>
 
       {totalPages > 1 && (
-        <Pagination
-          hasPreviousPage={currentPage > 1}
-          hasNextPage={currentPage < totalPages}
-          onNextPage={() => setCurrentPage((prevPage) => prevPage + 1)}
-          onPreviousPage={() => setCurrentPage((prevPage) => prevPage - 1)}
-          page={currentPage}
-          totalPages={totalPages}
+        <CustomPagination
+          total={totalPages}
+          currentPage={currentPage}
+          onPageChange={goToPage}
         />
       )}
     </>
