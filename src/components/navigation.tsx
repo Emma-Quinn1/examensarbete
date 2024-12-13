@@ -62,6 +62,9 @@ const Navigation = () => {
                 <div className="dropdown-item">
                   <Link href="/message/chatApp">Chat</Link>
                 </div>
+                <div className="dropdown-item">
+                  <Link href="/relocate/myRelocations">Mina omplaceringar</Link>
+                </div>
               </NavDropdown>
             ) : (
               <>
