@@ -1,8 +1,18 @@
 import useStreamCollection from "./useStreamCollection";
 import { locationsCol } from "@/services/firebase";
+import { orderBy } from "firebase/firestore";
 
-const useGetBreed = () => {
-  return useStreamCollection(locationsCol);
+const useGetLocations = () => {
+  const { data, loading, error } = useStreamCollection(
+    locationsCol,
+    orderBy("name")
+  );
+
+  return {
+    data: data || [],
+    loading,
+    error,
+  };
 };
 
-export default useGetBreed;
+export default useGetLocations;

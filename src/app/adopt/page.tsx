@@ -18,6 +18,7 @@ const Adopt = () => {
   const { currentUser } = useAuth();
   const { data, loading } = useGetPets();
   const { data: animalTypes } = useGetType();
+  const [generalError, setGeneralError] = useState<string | null>(null);
 
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -27,9 +28,12 @@ const Adopt = () => {
   const pageSize = 9;
 
   const goToPage = (pageNumber: number) => {
-    router.push(`/adopt?page=${pageNumber}`);
+    try {
+      router.push(`/adopt?page=${pageNumber}`);
+    } catch {
+      setGeneralError("Ett fel uppstod vid sidbyte. Försök igen senare.");
+    }
   };
-
   const [selectedTypes, setSelectedTypes] = useState<OptionType[]>([]);
 
   const handleTypeChange = (selectedOptions: MultiValue<OptionType>) => {
@@ -66,6 +70,16 @@ const Adopt = () => {
       <Container className="py-2 center-y">
         <h1 className="mt-2 mb-4">Adoptera</h1>
 
+        {generalError && (
+          <div
+            role="alert"
+            aria-live="assertive"
+            className="alert alert-danger"
+          >
+            {generalError}
+          </div>
+        )}
+
         <div className="mb-4">
           <label>Filtrera efter djurtyp</label>
           <Select
@@ -85,8 +99,6 @@ const Adopt = () => {
         ) : paginatedData && paginatedData.length > 0 ? (
           <Row>
             {paginatedData.map((pet) => {
-              console.log("pet.imageUrls:", pet.imageUrls);
-
               return (
                 <Col
                   md={4}

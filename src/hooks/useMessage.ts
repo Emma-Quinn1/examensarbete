@@ -9,9 +9,11 @@ import { conversationCol, messageCol } from "@/services/firebase";
 import { v4 as uuidv4 } from "uuid";
 import useAuth from "./useAuth";
 import { Message, NewMessage } from "@/types/message.types";
+import { useState } from "react";
 
 const useMessage = () => {
   const { currentUser } = useAuth();
+  const [generalError, setGeneralError] = useState<string | null>(null);
 
   const generateConversationId = (id1: string, id2: string): string => {
     return [id1, id2].sort().join("_");
@@ -64,18 +66,17 @@ const useMessage = () => {
           updated_at: serverTimestamp(),
         });
       }
-
+      setGeneralError(null);
       return newMessage;
-    } catch (error: unknown) {
-      const errorMessage =
-        error instanceof Error ? error.message : "Unknown error occurred.";
-      throw new Error(`Failed to send message: ${errorMessage}`);
+    } catch {
+      setGeneralError("Ett fel uppstod, försök igen");
     }
   };
 
   return {
     addMessage,
     generateConversationId,
+    generalError,
   };
 };
 

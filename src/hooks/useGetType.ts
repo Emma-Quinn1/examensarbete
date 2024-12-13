@@ -2,7 +2,12 @@ import useStreamCollection from "./useStreamCollection";
 import { animalTypeCol } from "@/services/firebase";
 
 const useGetType = () => {
-  return useStreamCollection(animalTypeCol);
+  const { data, loading, error } = useStreamCollection(animalTypeCol);
+  return {
+    data: data || [],
+    loading,
+    error,
+  };
 };
 
 export default useGetType;

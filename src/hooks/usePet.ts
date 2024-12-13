@@ -4,10 +4,12 @@ import { NewPet, Pet } from "@/types/pet.types";
 import { v4 as uuidv4 } from "uuid";
 import useAuth from "./useAuth";
 import useUploadImage from "./useUploadImage";
+import { useState } from "react";
 
 const usePet = () => {
   const { currentUser } = useAuth();
   const { upload } = useUploadImage();
+  const [generalError, setGeneralError] = useState<string | null>(null);
 
   const addPet = async (petData: NewPet, imageFiles: File[]) => {
     if (!currentUser) {
@@ -47,17 +49,16 @@ const usePet = () => {
       };
 
       await setDoc(doc(petsCol, petId), newPet);
-
+      setGeneralError(null);
       return newPet;
-    } catch (error: unknown) {
-      const errorMessage =
-        error instanceof Error ? error.message : "Unknown error occurred.";
-      throw new Error(`Failed to add pet: ${errorMessage}`);
+    } catch {
+      setGeneralError("Ett fel uppstod, försök igen");
     }
   };
 
   return {
     addPet,
+    generalError,
   };
 };
 

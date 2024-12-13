@@ -8,18 +8,24 @@ import Link from "next/link";
 import placeholder from "@/img/thumb-medium.png";
 import { CustomPagination } from "../../components/pagination";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 const Blog = () => {
   const { data, loading } = useGetPosts();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [generalError, setGeneralError] = useState<string | null>(null);
 
   const currentPage = Number(searchParams.get("page")) || 1;
 
   const pageSize = 9;
 
   const goToPage = (pageNumber: number) => {
-    router.push(`/blog?page=${pageNumber}`);
+    try {
+      router.push(`/blog?page=${pageNumber}`);
+    } catch {
+      setGeneralError("Ett fel uppstod vid sidbyte. Försök igen senare.");
+    }
   };
 
   const startIndex = (currentPage - 1) * pageSize;
@@ -31,6 +37,16 @@ const Blog = () => {
     <>
       <Container className="py-2">
         <h1 className="mt-2 mb-4">Blogginlägg</h1>
+        {generalError && (
+          <div
+            role="alert"
+            aria-live="assertive"
+            className="alert alert-danger"
+          >
+            {generalError}
+          </div>
+        )}
+
         {loading ? (
           <div id="loader">
             <MoonLoader color={"#888"} size={25} speedMultiplier={1.1} />

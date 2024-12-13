@@ -8,6 +8,8 @@ import useMessage from "@/hooks/useMessage";
 import { NewMessage } from "@/types/message.types";
 import useAuth from "@/hooks/useAuth";
 import "./module.css";
+import { useState } from "react";
+import { MoonLoader } from "react-spinners";
 
 const MessageWindow: React.FC<{
   recipientId?: string;
@@ -16,6 +18,7 @@ const MessageWindow: React.FC<{
   const searchParams = useSearchParams();
   const recipientId = propRecipientId || searchParams.get("recipientId");
   const recipientName = propRecipientName || searchParams.get("recipientName");
+  const [generalError, setGeneralError] = useState<string | null>(null);
 
   const { addMessage, generateConversationId } = useMessage();
   const { currentUser } = useAuth();
@@ -37,7 +40,7 @@ const MessageWindow: React.FC<{
 
   const onSendMessage: SubmitHandler<NewMessage> = async (data) => {
     if (!recipientId) {
-      throw new Error("Mottagarens ID saknas.");
+      setGeneralError("Mottagarens ID saknas.");
       return;
     }
 
@@ -50,10 +53,8 @@ const MessageWindow: React.FC<{
 
       await addMessage(newMessage);
       reset();
-    } catch (error) {
-      throw new Error(
-        `Misslyckades att skicka meddelande: ${error instanceof Error}`
-      );
+    } catch {
+      setGeneralError("Något gick fel. Försök igen");
     }
   };
 
@@ -65,12 +66,21 @@ const MessageWindow: React.FC<{
 
   return (
     <Container fluid className="chat-container">
+      {generalError && (
+        <div role="alert" aria-live="assertive" className="alert alert-danger">
+          {generalError}
+        </div>
+      )}
+
       <h3>Chatt med {recipientName}</h3>
 
       <Row>
         <Col className="content-container p-3">
           {loading ? (
-            <p>Laddar meddelanden...</p>
+            <div id="loader">
+              <MoonLoader color={"#888"} size={25} speedMultiplier={1.1} />
+              <span className="visually-hidden">Loading...</span>
+            </div>
           ) : (
             <div className="messages">
               {messages

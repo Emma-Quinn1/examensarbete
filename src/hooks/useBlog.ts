@@ -4,10 +4,12 @@ import { v4 as uuidv4 } from "uuid";
 import useAuth from "./useAuth";
 import useUploadImage from "./useUploadImage";
 import { NewPost, Post } from "@/types/blog.types";
+import { useState } from "react";
 
 const useBlog = () => {
   const { currentUser } = useAuth();
   const { upload } = useUploadImage();
+  const [generalError, setGeneralError] = useState<string | null>(null);
 
   const addPost = async (blogData: NewPost, imageFiles: File[]) => {
     if (!currentUser) {
@@ -37,17 +39,17 @@ const useBlog = () => {
       };
 
       await setDoc(doc(blogCol, blogId), newPost);
+      setGeneralError(null);
 
       return newPost;
-    } catch (error: unknown) {
-      const errorMessage =
-        error instanceof Error ? error.message : "Unknown error occurred.";
-      throw new Error(`Failed to create post: ${errorMessage}`);
+    } catch {
+      setGeneralError("Kunde inte skapa inlägg");
     }
   };
 
   return {
     addPost,
+    generalError,
   };
 };
 

@@ -38,7 +38,6 @@ const SignUp = () => {
       await signup(data.email, data.password);
       router.push("/dashboard");
     } catch (err) {
-      console.log(err);
       if (err instanceof FirebaseError) {
         setGeneralError(
           err.code === "auth/email-already-in-use"

@@ -32,7 +32,6 @@ const useStreamCollection = <T>(
         setError(null);
       },
       (err) => {
-        console.error("Error fetching Firestore collection:", err);
         setError(err);
         setLoading(false);
       }
