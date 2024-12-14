@@ -48,81 +48,89 @@ const Login = () => {
   };
 
   return (
-    <Container className="py-5 center-y">
-      <Row>
-        <Col md={{ span: 6, offset: 3 }}>
-          <Card className="mb-3">
-            <Card.Body>
-              <Card.Title className="mb-3">Logga In</Card.Title>
+    <div className="login-page d-flex justify-content-center align-items-center">
+      <Container className="py-3 d-flex justify-content-center align-items-center">
+        <Row className="w-100">
+          <Col md={{ span: 4, offset: 4 }}>
+            <Card className="text-center p-4 login-card">
+              <Card.Body>
+                <Card.Title className="mb-3 fs-3 fw-bold">Logga in</Card.Title>
+                <Form onSubmit={handleSubmit(onLogin)} noValidate>
+                  {generalError && (
+                    <div
+                      role="alert"
+                      aria-live="assertive"
+                      className="alert alert-danger"
+                    >
+                      {generalError}
+                    </div>
+                  )}
 
-              <Form
-                onSubmit={handleSubmit(onLogin)}
-                noValidate
-                className="mb-3"
-              >
-                {generalError && (
-                  <div
-                    role="alert"
-                    aria-live="assertive"
-                    className="alert alert-danger"
+                  <Form.Group controlId="email" className="mb-3">
+                    <Form.Control
+                      placeholder="exempel@email.com"
+                      type="email"
+                      className="mt-4 form-control-login"
+                      {...register("email", {
+                        required: "Du måste ange en epost adress",
+                        pattern: {
+                          value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                          message: "Skriv in en gitligt epost-adress",
+                        },
+                      })}
+                    />
+                    {errors.email && (
+                      <p className="invalid">
+                        {errors.email.message || "Ogiltligt värde"}
+                      </p>
+                    )}
+                  </Form.Group>
+
+                  <Form.Group controlId="password" className="mb-3">
+                    <Form.Control
+                      className="form-control-login"
+                      type="password"
+                      placeholder="lösenord"
+                      autoComplete="new-password"
+                      {...register("password", {
+                        required:
+                          "Du måste ange ditt lösenord för att logga in",
+                        minLength: {
+                          message: "Det måste minst vara 6 tecken",
+                          value: 6,
+                        },
+                      })}
+                    />
+                    {errors.password && (
+                      <p className="invalid">
+                        {errors.password.message || "Ogiltligt värde"}
+                      </p>
+                    )}
+                  </Form.Group>
+
+                  <button
+                    disabled={isSubmitting}
+                    type="submit"
+                    className="login-btn p-2 mt-3"
                   >
-                    {generalError}
-                  </div>
-                )}
+                    {isSubmitting ? "Loggar in" : "Logga in"}
+                  </button>
+                </Form>
 
-                <Form.Group controlId="email" className="mb-3">
-                  <Form.Label>Epost</Form.Label>
-                  <Form.Control
-                    placeholder="exempel@email.com"
-                    type="email"
-                    {...register("email", {
-                      required: "Du måste ange en epost adress",
-                      pattern: {
-                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                        message: "Skriv in en gitligt epost-adress",
-                      },
-                    })}
-                  />
-                  {errors.email && (
-                    <p className="invalid">
-                      {errors.email.message || "Ogiltligt värde"}
-                    </p>
-                  )}
-                </Form.Group>
-
-                <Form.Group controlId="password" className="mb-3">
-                  <Form.Label>Lösenord</Form.Label>
-                  <Form.Control
-                    type="password"
-                    autoComplete="new-password"
-                    {...register("password", {
-                      required: "Du måste ange ditt lösenord för att logga in",
-                      minLength: {
-                        message: "Det måste minst vara 6 tecken",
-                        value: 6,
-                      },
-                    })}
-                  />
-                  {errors.password && (
-                    <p className="invalid">
-                      {errors.password.message || "Ogiltligt värde"}
-                    </p>
-                  )}
-                </Form.Group>
-
-                <Button disabled={isSubmitting} type="submit" variant="primary">
-                  {isSubmitting ? "Loggar in" : "Logga in"}
-                </Button>
-              </Form>
-
-              <div className="text-center">
-                <Link href="logIn/forgotPassword">Glömt lösenord?</Link>
-              </div>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+                <div className="text-center mt-5">
+                  <Link
+                    href="logIn/forgotPassword"
+                    className="forgot-password-link"
+                  >
+                    Glömt ditt lösenord?
+                  </Link>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 

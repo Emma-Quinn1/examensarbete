@@ -5,7 +5,7 @@ import React from "react";
 
 const Hero = ({ image, title, text, links }: HeroDetails) => {
   return (
-    <div className="position-relative hero-image-wrapper">
+    <div className="position-relative hero-image-wrapper w-100 d-flex justify-content-center align-items-center">
       <Image
         src={image}
         alt="Hero image"
@@ -15,9 +15,9 @@ const Hero = ({ image, title, text, links }: HeroDetails) => {
       />
 
       {(title || text) && (
-        <div className="hero-overlay d-none d-md-block">
-          {title && <h1 className="hero-text">{title}</h1>}
-          {text && <p className="text-center">{text}</p>}
+        <div className="hero-overlay d-none d-md-block position-absolute">
+          {title && <h1 className="hero-text fs-4 text-center">{title}</h1>}
+          {text && <p className="text-center fs-5">{text}</p>}
         </div>
       )}
 
@@ -26,7 +26,8 @@ const Hero = ({ image, title, text, links }: HeroDetails) => {
           <Link
             key={index}
             href={link.href}
-            className="hero-buttons btn btn-primary"
+            className="hero-buttons btn p-2 fw-semibold"
+            role="button"
           >
             {link.label}
           </Link>

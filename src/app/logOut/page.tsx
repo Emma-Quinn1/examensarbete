@@ -8,6 +8,7 @@ import Row from "react-bootstrap/Row";
 
 import useAuth from "../../hooks/useAuth";
 import { useRouter } from "next/navigation";
+import { div } from "framer-motion/client";
 
 const LogOut = () => {
   const { logout } = useAuth();
@@ -23,19 +24,25 @@ const LogOut = () => {
   }, [logout, router]);
 
   return (
-    <Container className="py-3 center-y">
-      <Row>
-        <Col md={{ span: 6, offset: 3 }}>
-          <Card className="mb-3">
-            <Card.Body>
-              <Card.Title className="mb-3">Logga ut</Card.Title>
+    <div className="logout-page">
+      <Container className="py-3 center-y">
+        <Row>
+          <Col md={{ span: 6, offset: 3 }}>
+            <Card className="mt-5 logout-card">
+              <Card.Body>
+                <Card.Title className="mb-3 fs-4 w-100 d-block text-center">
+                  Logga ut
+                </Card.Title>
 
-              <Card.Text>Vänta medans du blir utloggad</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+                <Card.Text className="fs-5 w-100 d-block text-center">
+                  Vänta medans du blir utloggad
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 
