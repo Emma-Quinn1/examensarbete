@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -57,7 +56,7 @@ const SignUp = () => {
           <Col md={{ span: 6, offset: 3 }}>
             <Card className="mb-3 signup-card text-center p-4">
               <Card.Body>
-                <Card.Title className="mb-3 fs-3 fw-bold">
+                <Card.Title className="mb-3 fs-2 fw-bold">
                   Bli medlem
                 </Card.Title>
 
@@ -78,7 +77,7 @@ const SignUp = () => {
 
                   <Form.Group controlId="email" className="mb-3">
                     <Form.Control
-                      className="form-control-login"
+                      className="form-control-login fs-6 fw-lighter"
                       placeholder="Exempel@email.com"
                       type="email"
                       {...register("email", {
@@ -98,7 +97,7 @@ const SignUp = () => {
 
                   <Form.Group controlId="password" className="mb-3">
                     <Form.Control
-                      className="form-control-login"
+                      className="form-control-login fs-6 fw-lighter"
                       type="password"
                       placeholder="Lösenord"
                       autoComplete="new-password"
@@ -123,7 +122,7 @@ const SignUp = () => {
                       type="password"
                       placeholder="Bekräfta ditt lösenord"
                       autoComplete="off"
-                      className="form-control-login"
+                      className="form-control-login fs-6 fw-lighter"
                       {...register("confirmPassword", {
                         required:
                           "Skriv in samma lösenord för att bekräfta det",
@@ -149,9 +148,9 @@ const SignUp = () => {
                   <button
                     disabled={isSubmitting}
                     type="submit"
-                    className="signUp-btn p-2 mt-3"
+                    className="signUp-btn p-2 mt-3 fs-6 fw-light"
                   >
-                    {isSubmitting ? "Skapar konto" : "Skapa konto"}
+                    {isSubmitting ? "Skapar konto..." : "Skapa konto"}
                   </button>
                 </Form>
               </Card.Body>

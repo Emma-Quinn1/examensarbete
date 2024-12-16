@@ -7,7 +7,6 @@ import useGetMessages from "@/hooks/useGetMessages";
 import useMessage from "@/hooks/useMessage";
 import { NewMessage } from "@/types/message.types";
 import useAuth from "@/hooks/useAuth";
-import "./module.css";
 import { useState } from "react";
 import { MoonLoader } from "react-spinners";
 
@@ -72,23 +71,23 @@ const MessageWindow: React.FC<{
         </div>
       )}
 
-      <h3>Chatt med {recipientName}</h3>
+      <h3 className="fw-light fs-2 ">Chatt med {recipientName}</h3>
 
       <Row>
-        <Col className="content-container p-3">
+        <Col className="content-container d-flex flex-column p-3">
           {loading ? (
             <div id="loader">
               <MoonLoader color={"#888"} size={25} speedMultiplier={1.1} />
               <span className="visually-hidden">Loading...</span>
             </div>
           ) : (
-            <div className="messages">
+            <div className="messages p-4">
               {messages
                 ?.filter((msg) => msg.conversationId === conversationId)
                 .map((msg) => (
                   <div
                     key={msg._id}
-                    className={`message mb-4 d-flex ${
+                    className={`message mb-4 d-flex fw-light fs-5 ${
                       msg.senderId === currentUserId
                         ? "justify-content-end"
                         : "justify-content-start"
@@ -117,7 +116,7 @@ const MessageWindow: React.FC<{
               isInvalid={!!errors.message}
             />
 
-            <button type="submit" className="chat-btn">
+            <button type="submit" className="chat-btn p-2 rounded">
               Skicka
             </button>
           </Form>

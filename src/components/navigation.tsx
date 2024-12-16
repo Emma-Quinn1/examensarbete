@@ -30,6 +30,7 @@ const Navigation = () => {
                 src={logo}
                 alt="Logotype Furever Home"
                 className="img-fluid navbar-logo"
+                priority
               />
             </Link>
           </NavbarBrand>

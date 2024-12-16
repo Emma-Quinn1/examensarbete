@@ -36,7 +36,10 @@ const Blog = () => {
   return (
     <>
       <Container className="py-2">
-        <h1 className="mt-2 mb-4">Blogginlägg</h1>
+        <h1 className="mt-3 mb-2 fs-1 fw-light">Blogginlägg</h1>
+        <p className="mb-3 fs-4 fw-light">
+          Läs gärna olika blogginlägg från våra medlemar
+        </p>
         {generalError && (
           <div
             role="alert"
@@ -66,8 +69,11 @@ const Blog = () => {
                     whileTap={{ scale: 0.95 }}
                     className="w-100"
                   >
-                    <Card className="w-100">
-                      <Link href={`/blog/${post._id}`}>
+                    <Card className="w-100 mt-4">
+                      <Link
+                        href={`/blog/${post._id}`}
+                        className="text-decoration-none blogposts fw-light"
+                      >
                         <Card.Img
                           variant="top"
                           src={
@@ -78,8 +84,10 @@ const Blog = () => {
                           }
                           alt={post.title}
                         />
-                        <Card.Body>
-                          <Card.Title>{post.title}</Card.Title>
+                        <Card.Body className="card-blog-page">
+                          <Card.Title className="fs-5 fw-light">
+                            {post.title}
+                          </Card.Title>
                         </Card.Body>
                       </Link>
                     </Card>

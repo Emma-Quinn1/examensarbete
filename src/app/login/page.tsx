@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -54,7 +53,9 @@ const Login = () => {
           <Col md={{ span: 4, offset: 4 }}>
             <Card className="text-center p-4 login-card">
               <Card.Body>
-                <Card.Title className="mb-3 fs-3 fw-bold">Logga in</Card.Title>
+                <Card.Title className="mb-3 fs-2 fw-bold mt-2">
+                  Logga in
+                </Card.Title>
                 <Form onSubmit={handleSubmit(onLogin)} noValidate>
                   {generalError && (
                     <div
@@ -70,7 +71,7 @@ const Login = () => {
                     <Form.Control
                       placeholder="exempel@email.com"
                       type="email"
-                      className="mt-4 form-control-login"
+                      className="mt-4 form-control-login fs-6 fw-lighter"
                       {...register("email", {
                         required: "Du måste ange en epost adress",
                         pattern: {
@@ -88,7 +89,7 @@ const Login = () => {
 
                   <Form.Group controlId="password" className="mb-3">
                     <Form.Control
-                      className="form-control-login"
+                      className="form-control-login fs-6 fw-lighter"
                       type="password"
                       placeholder="lösenord"
                       autoComplete="new-password"
@@ -111,16 +112,16 @@ const Login = () => {
                   <button
                     disabled={isSubmitting}
                     type="submit"
-                    className="login-btn p-2 mt-3"
+                    className="login-btn p-2 mt-3 fs-6 fw-light"
                   >
-                    {isSubmitting ? "Loggar in" : "Logga in"}
+                    {isSubmitting ? "Loggar in..." : "Logga in"}
                   </button>
                 </Form>
 
                 <div className="text-center mt-5">
                   <Link
                     href="logIn/forgotPassword"
-                    className="forgot-password-link"
+                    className="forgot-password-link fs-6 fw-lighter"
                   >
                     Glömt ditt lösenord?
                   </Link>

@@ -33,7 +33,13 @@ footer {
 .login-btn,
 .login-btn:hover,
 .forgot-password-btn,
-.forgot-password-btn:hover {
+.forgot-password-btn:hover,
+.update-btn,
+.update-btn:hover,
+.relocate-btn,
+.relocate-btn:hover,
+.blog-btn,
+.blog-btn:hover {
   width: 13em;
   background-color: #3b6d3b;
   color: white;
@@ -88,18 +94,42 @@ footer {
   font-weight: bolder;
 }
 
+.dashboard-links {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background-color: white;
+  transition: background-color 0.3s, color 0.3;
+}
+
+.dashboard-links:hover {
+  background-color: #89d9a8;
+  font-weight: bolder;
+}
+
+.dashboard-link,
+.meny {
+  color: black;
+}
+
 .logout-page,
 .login-page,
 .signup-page,
-.forgot-password-page {
+.forgot-password-page,
+.update-page,
+.blog-page,
+.relocate-page {
   min-height: 80vh;
-  background: linear-gradient(135deg, #9bd7b8, #3e9f99);
+  background: linear-gradient(to bottom, #004d40, #66bb6a);
 }
 
 .login-card,
 .logout-card,
 .signup-card,
-.forgot-password-card {
+.forgot-password-card,
+.update-card,
+.relocate-card,
+.blog-card {
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
@@ -116,11 +146,108 @@ footer {
   box-shadow: none;
 }
 
+.my-select__option--is-focused {
+  background-color: #d4f5d4 !important;
+}
+
 .invalid {
   color: red;
 }
 
+.alert {
+  margin-top: 1.5rem;
+}
+
+.card-img-top {
+  object-fit: cover;
+  height: 15rem;
+}
+
+.pets {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.card-adopt-page,
+.card-blog-page,
+.card-relocation-page {
+  background-color: #375248;
+  color: white;
+}
+
+.relocations-page {
+  min-height: 80vh;
+}
+
+.card-slug-page {
+  border: none;
+}
+
+.chat-page {
+  min-height: 80vh;
+  background: linear-gradient(to left, #f6fcfa, rgb(57, 136, 123));
+}
+
+.chat-links {
+  color: #fff;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.chat-links:hover {
+  background-color: rgba(18, 67, 57, 0.66);
+  color: #fff;
+}
+
+.chat-links:focus {
+  background-color: rgba(18, 67, 57, 0.66);
+  color: #fff;
+  text-decoration: none;
+}
+
+.left-column {
+  background-color: rgb(57, 136, 123);
+}
+
+.content-container {
+  height: 90vh;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.header-container {
+  background-color: #23675f;
+  color: white;
+}
+
+.message-bubble {
+  max-width: 40%;
+}
+
+.sent {
+  background-color: #a6dad1;
+  border-radius: 10px 0px 10px 10px;
+}
+
+.received {
+  background-color: #f0f0f0;
+  border-radius: 0px 10px 10px 10px;
+}
+
+.chat-btn {
+  background-color: rgba(18, 67, 57, 0.66);
+  color: white;
+  border: none;
+}
+
 /* kolla dessa */
+
+.full-width-wrapper {
+  background: linear-gradient(to bottom, #004d40, #66bb6a);
+}
+
 #loader {
   display: flex;
   flex-direction: column;
@@ -140,15 +267,6 @@ footer {
   border: 2px dashed #ccc;
   height: 10em;
   width: 95%;
-}
-
-.alert {
-  margin-top: 1.5rem;
-}
-
-.card-img-top {
-  object-fit: cover;
-  height: 15rem;
 }
 
 .pet-name {

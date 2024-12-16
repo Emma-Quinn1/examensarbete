@@ -8,7 +8,6 @@ import Row from "react-bootstrap/Row";
 
 import useAuth from "../../hooks/useAuth";
 import { useRouter } from "next/navigation";
-import { div } from "framer-motion/client";
 
 const LogOut = () => {
   const { logout } = useAuth();
@@ -30,11 +29,11 @@ const LogOut = () => {
           <Col md={{ span: 6, offset: 3 }}>
             <Card className="mt-5 logout-card">
               <Card.Body>
-                <Card.Title className="mb-3 fs-4 w-100 d-block text-center">
+                <Card.Title className="mb-3 fs-4 w-100 d-block text-center mt-3 fs-2 fw-bold">
                   Logga ut
                 </Card.Title>
 
-                <Card.Text className="fs-5 w-100 d-block text-center">
+                <Card.Text className="fs-5 w-100 d-block text-center mt-3 fs-5 fw-light">
                   Vänta medans du blir utloggad
                 </Card.Text>
               </Card.Body>

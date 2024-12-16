@@ -46,7 +46,7 @@ const UploadImage: React.FC<UploadImageProps> = ({ onUpload }) => {
           {isDragActive ? (
             <p>Släpp din fil här...</p>
           ) : (
-            <p className="text-white">
+            <p className="text-white fs-5 fw-lighter">
               Klicka här eller dra & släpp för att ladda upp din bild
             </p>
           )}

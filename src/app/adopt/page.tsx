@@ -68,7 +68,7 @@ const Adopt = () => {
   return (
     <>
       <Container className="py-2 center-y">
-        <h1 className="mt-2 mb-4">Adoptera</h1>
+        <h1 className="mt-2 mb-2 fs-1 fw-light">Adoptera</h1>
 
         {generalError && (
           <div
@@ -81,13 +81,17 @@ const Adopt = () => {
         )}
 
         <div className="mb-4">
-          <label>Filtrera efter djurtyp</label>
+          <label className="mt-1 mb-2 fs-6 fw-light">
+            Filtrera efter djurtyp
+          </label>
           <Select
+            classNamePrefix="my-select"
             isMulti
             value={selectedTypes}
             options={animalTypeOptions}
             onChange={handleTypeChange}
             placeholder="Välj djurtyper"
+            className="fs-6 fw-lighter"
           />
         </div>
 
@@ -110,8 +114,11 @@ const Adopt = () => {
                     whileTap={{ scale: 0.95 }}
                     className="w-100"
                   >
-                    <Card className="w-100">
-                      <Link href={`/adopt/${pet._id}`}>
+                    <Card className="w-100 mt-4">
+                      <Link
+                        href={`/adopt/${pet._id}`}
+                        className="text-decoration-none pets fw-light"
+                      >
                         <Card.Img
                           variant="top"
                           src={
@@ -122,8 +129,10 @@ const Adopt = () => {
                           }
                           alt={pet.name}
                         />
-                        <Card.Body>
-                          <Card.Title>{pet.name}</Card.Title>
+                        <Card.Body className="card-adopt-page">
+                          <Card.Title className="fs-3 fw-light">
+                            {pet.name}
+                          </Card.Title>
                         </Card.Body>
                       </Link>
                     </Card>
@@ -133,7 +142,9 @@ const Adopt = () => {
             })}
           </Row>
         ) : (
-          <p>Inga djur tillgängliga för adoption just nu.</p>
+          <p className="mt-2 mb-2 fs-1 fw-light">
+            Inga djur tillgängliga för adoption just nu.
+          </p>
         )}
       </Container>
 

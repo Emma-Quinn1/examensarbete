@@ -51,12 +51,12 @@ const ChatApp = () => {
         )}
 
         <Col md={3} className="text-center">
-          <h5>Mina Chattar</h5>
+          <h5 className="fw-light fs-4">Mina Chattar</h5>
         </Col>
       </Row>
 
       <Row>
-        <Col md={3} className="left-column">
+        <Col md={3} className="left-column border-end border-secondary-subtle">
           <Nav className="flex-column mt-3 mb-3">
             {loadingConversations ? (
               <div id="loader">
@@ -74,7 +74,7 @@ const ChatApp = () => {
                 const recipientName = users[recipientId] || "Laddar...";
                 return (
                   <Nav.Link
-                    className="chat-links"
+                    className="chat-links text-decoration-none text-center border-top border-secondary-subtle border-bottom fw-light fs-5"
                     key={conversation._id}
                     onClick={() => handleSelectConversation(recipientId)}
                   >
@@ -88,7 +88,10 @@ const ChatApp = () => {
           </Nav>
         </Col>
 
-        <Col md={9} className="bg-light p-3">
+        <Col
+          md={9}
+          className="chat-page d-flex align-items-center justify-content-center p-3"
+        >
           {activeConversation && <MessageWindow {...activeConversation} />}
         </Col>
       </Row>

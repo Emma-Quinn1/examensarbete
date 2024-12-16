@@ -69,8 +69,10 @@ const MyRelocations = () => {
 
   return (
     <>
-      <Container className="py-2 center-y mt-4">
-        <h1>Mina omplaceringar</h1>
+      <Container className="py-2 center-y mt-4 relocations-page">
+        <h1 className="mt-2 mb-2 fs-1 fw-light border-bottom border-success pb-2">
+          Mina omplaceringar
+        </h1>
 
         {generalError && (
           <div
@@ -96,7 +98,7 @@ const MyRelocations = () => {
                   key={pet._id}
                   className="mb-4 d-flex align-items-stretch mt-4"
                 >
-                  <Card className="w-100">
+                  <Card className="w-100 mt-4">
                     <Card.Img
                       variant="top"
                       src={
@@ -106,16 +108,19 @@ const MyRelocations = () => {
                       }
                       alt={pet.name}
                     />
-                    <Card.Body>
-                      <Card.Title>{pet.name}</Card.Title>
-                    </Card.Body>
+                    <Card.Body className="card-relocation-page d-flex flex-column">
+                      <Card.Title className="pets fw-light fs-3">
+                        {pet.name}
+                      </Card.Title>
 
-                    <Button
-                      variant="danger"
-                      onClick={() => confirmDelete(pet._id)}
-                    >
-                      Radera omplacering
-                    </Button>
+                      <Button
+                        className="mt-2 fs-6 fw-lighter"
+                        variant="danger"
+                        onClick={() => confirmDelete(pet._id)}
+                      >
+                        Radera omplacering
+                      </Button>
+                    </Card.Body>
                   </Card>
                 </Col>
               );
@@ -136,16 +141,26 @@ const MyRelocations = () => {
 
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Bekräfta Radering</Modal.Title>
+          <Modal.Title className="mt-2 fs-4 fw-light">
+            Bekräfta Radering
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="mt-2 fs-5 fw-lighter">
           Är du säker på att du vill radera denna omplacering?
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
+          <Button
+            variant="secondary"
+            onClick={() => setShowModal(false)}
+            className="mt-2 fs-6 fw-light"
+          >
             Avbryt
           </Button>
-          <Button variant="danger" onClick={handleDelete}>
+          <Button
+            variant="danger"
+            onClick={handleDelete}
+            className="mt-2 fs-6 fw-light"
+          >
             Radera
           </Button>
         </Modal.Footer>
