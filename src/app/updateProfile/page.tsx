@@ -109,6 +109,7 @@ const UpdateProfile = () => {
                     <Form.Control
                       className="form-control-login mb-3 fs-6 fw-light mt-2"
                       placeholder="Namn"
+                      autoComplete="name"
                       type="text"
                       {...register("name", {
                         minLength: {
@@ -128,6 +129,7 @@ const UpdateProfile = () => {
                     <Form.Control
                       className="form-control-login mb-3 fs-6 fw-light mt-2"
                       placeholder="Exempel@email.com"
+                      autoComplete="email"
                       type="email"
                       {...register("email", {
                         required: "Du måste ange en epost adress",

@@ -80,6 +80,7 @@ const SignUp = () => {
                       className="form-control-login fs-6 fw-lighter"
                       placeholder="Exempel@email.com"
                       type="email"
+                      autoComplete="email"
                       {...register("email", {
                         required: "Du måste ange en epost adress",
                         pattern: {

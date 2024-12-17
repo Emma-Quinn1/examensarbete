@@ -23,18 +23,44 @@ const Navigation = () => {
   return (
     <>
       <Navbar expand={false} className="navbar navbar-dark">
-        <Container>
-          <NavbarBrand>
-            <Link href="/">
-              <Image
-                src={logo}
-                alt="Logotype Furever Home"
-                className="img-fluid navbar-logo"
-                priority
-              />
-            </Link>
-          </NavbarBrand>
-
+        <Container fluid className="ms-5 me-5">
+          {currentUser ? (
+            <NavbarBrand>
+              <Link
+                href="/dashboard"
+                className="d-flex align-items-center text-decoration-none"
+              >
+                <Image
+                  src={logo}
+                  alt="Logotype Furever Home"
+                  className="img-fluid navbar-logo me-5"
+                  priority
+                />
+                <h1 className="fs-3 text-white d-none d-lg-block fw-light">
+                  En andra chans, ett hem för
+                  <span className="text-decoration-underline ms-1">alltid</span>
+                </h1>
+              </Link>
+            </NavbarBrand>
+          ) : (
+            <NavbarBrand>
+              <Link
+                href="/"
+                className="d-flex align-items-center text-decoration-none"
+              >
+                <Image
+                  src={logo}
+                  alt="Logotype Furever Home"
+                  className="img-fluid navbar-logo me-5"
+                  priority
+                />
+                <h1 className="fs-3 text-white d-none d-lg-block fw-light">
+                  En andra chans, ett hem för
+                  <span className="text-decoration-underline ms-1">alltid</span>
+                </h1>
+              </Link>
+            </NavbarBrand>
+          )}
           <NavbarToggle aria-controls="offcanvasNavbar" onClick={handleShow} />
         </Container>
       </Navbar>

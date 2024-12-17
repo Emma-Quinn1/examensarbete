@@ -1,3 +1,4 @@
+"use client";
 import { HeroDetails } from "@/types/hero.types";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,8 +11,8 @@ const Hero = ({ image, title, text, links }: HeroDetails) => {
         src={image}
         alt="Hero image"
         fill
-        objectFit="cover"
         className="hero-image"
+        priority
       />
 
       {(title || text) && (

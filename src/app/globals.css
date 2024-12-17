@@ -5,9 +5,9 @@ footer {
   background-color: #304b41;
 }
 
-.footer-link,
 .navbar-link,
-.offcanvas-header {
+.offcanvas-header,
+.footer-text {
   color: white;
 }
 
@@ -62,6 +62,7 @@ footer {
 
 .hero-image {
   z-index: 0;
+  object-fit: cover;
 }
 
 .hero-overlay {
@@ -118,9 +119,14 @@ footer {
 .forgot-password-page,
 .update-page,
 .blog-page,
-.relocate-page {
+.relocate-page,
+.full-width-wrapper {
   min-height: 80vh;
   background: linear-gradient(to bottom, #004d40, #66bb6a);
+}
+
+.slug-blog-page {
+  min-height: 80vh;
 }
 
 .login-card,
@@ -242,10 +248,26 @@ footer {
   border: none;
 }
 
-/* kolla dessa */
+.msg-to-author-btn {
+  width: 16em;
+  background-color: #3b6d3b;
+  color: white;
+  border-radius: 20px;
+  border: none;
+}
 
-.full-width-wrapper {
-  background: linear-gradient(to bottom, #004d40, #66bb6a);
+.msg-to-author-btn:disabled {
+  color: gray;
+  background-color: lightgray;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.adopt-image {
+  width: 80%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 15px;
 }
 
 #loader {
@@ -267,23 +289,6 @@ footer {
   border: 2px dashed #ccc;
   height: 10em;
   width: 95%;
-}
-
-.pet-name {
-  font-size: 2rem;
-}
-
-.pet-info {
-  font-size: 1.2rem;
-}
-
-.adopt-container {
-  height: 15em;
-}
-
-.adopt-image {
-  width: auto;
-  height: auto;
 }
 
 .pagination-button {
@@ -329,4 +334,13 @@ footer {
   justify-content: center;
   align-items: center;
   margin: 1rem 0;
+}
+
+.footer-link {
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #d3d3d3;
 }

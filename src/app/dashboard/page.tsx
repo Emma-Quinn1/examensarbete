@@ -45,11 +45,11 @@ const Dashboard = () => {
 
         <div className="d-flex justify-content-center mb-3">
           <Link
-            href="/signUp"
+            href="/aboutUs"
             className="signUp-btn text-decoration-none btn fw-semibold p-3 mb-5 fs-5"
             role="button"
           >
-            Få stöd
+            Läs mer om oss
           </Link>
         </div>
       </Container>

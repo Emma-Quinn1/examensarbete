@@ -274,6 +274,35 @@ const Relocate = () => {
 
                   <UploadImage onUpload={handleUpload} />
 
+                  {imageFiles.length > 0 && (
+                    <div className="mt-3">
+                      <h5>Valda bilder:</h5>
+                      <ul className="list-group">
+                        {imageFiles.map((file, index) => (
+                          <li
+                            key={index}
+                            className="list-group-item d-flex justify-content-between align-items-center"
+                          >
+                            <span>
+                              {file.name} - {Math.round(file.size / 1024)} kB
+                            </span>
+                            <button
+                              type="button"
+                              className="btn btn-outline-danger btn-sm"
+                              onClick={() =>
+                                setImageFiles((prevFiles) =>
+                                  prevFiles.filter((_, i) => i !== index)
+                                )
+                              }
+                            >
+                              ❌
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
                   <button
                     disabled={isSubmitting}
                     type="submit"

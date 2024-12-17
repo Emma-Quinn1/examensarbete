@@ -37,9 +37,15 @@ const Home = () => {
           Home&quot;.
         </p>
 
-        <Row className="justify-content-center mt-5 gap-3">
-          <Col md={5} className="mb-4 d-flex align-items-stretch">
-            <Card className="w-100 p-3 card-hompage login-card p-5">
+        <Row className="justify-content-center mt-5 gap-3 gap-lg-5 gap-xl-5">
+          <Col
+            xl={5}
+            lg={5}
+            md={10}
+            xs={12}
+            className="mb-4 d-flex align-items-stretch"
+          >
+            <Card className="w-100 card-hompage login-card p-5">
               <Card.Body>
                 <Card.Title className="fw-medium mb-4 fs-5 lh-base">
                   Adoptera ett djur och ge dem ett liv fyllt av omsorg och
@@ -56,8 +62,14 @@ const Home = () => {
             </Card>
           </Col>
 
-          <Col md={5} className="mb-4 d-flex align-items-stretch">
-            <Card className="w-100 p-3 card-hompage login-card p-5">
+          <Col
+            xl={5}
+            lg={5}
+            md={10}
+            xs={12}
+            className="mb-4 d-flex align-items-stretch"
+          >
+            <Card className="w-100 card-hompage login-card p-5">
               <Card.Body>
                 <Card.Title className="fw-medium mb-4 fs-5 lh-base">
                   Omplacera ditt husdjur till en ny, pålitlig familj om

@@ -64,7 +64,7 @@ const MessageWindow: React.FC<{
   }
 
   return (
-    <Container fluid className="chat-container">
+    <Container fluid className="chat-container chat-page">
       {generalError && (
         <div role="alert" aria-live="assertive" className="alert alert-danger">
           {generalError}

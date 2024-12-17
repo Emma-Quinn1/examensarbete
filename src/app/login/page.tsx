@@ -69,6 +69,7 @@ const Login = () => {
 
                   <Form.Group controlId="email" className="mb-3">
                     <Form.Control
+                      autoComplete="email"
                       placeholder="exempel@email.com"
                       type="email"
                       className="mt-4 form-control-login fs-6 fw-lighter"
