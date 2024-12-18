@@ -4,14 +4,11 @@ import { useState } from "react";
 import { Nav, Container, Row, Col } from "react-bootstrap";
 import useGetConversations from "@/hooks/useGetConversations";
 import useAuth from "@/hooks/useAuth";
-import MessageWindow from "../page";
 import { MoonLoader } from "react-spinners";
+import { useRouter } from "next/navigation";
+import { FaArrowLeft } from "react-icons/fa";
 
 const ChatApp = () => {
-  const [activeConversation, setActiveConversation] = useState<{
-    recipientId: string;
-    recipientName: string;
-  } | null>(null);
   const [generalError, setGeneralError] = useState<string | null>(null);
 
   const { currentUser } = useAuth();
@@ -28,10 +25,15 @@ const ChatApp = () => {
     new Map(userConversations.map((conv) => [conv._id, conv])).values()
   );
 
+  const router = useRouter();
+
   const handleSelectConversation = (recipientId: string) => {
     try {
       const recipientName = users[recipientId] || "Laddar...";
-      setActiveConversation({ recipientId, recipientName });
+
+      router.push(
+        `/message?recipientId=${recipientId}&recipientName=${recipientName}`
+      );
     } catch {
       setGeneralError("Något gick fel. Kunde inte ladda mottagare");
     }
@@ -57,6 +59,14 @@ const ChatApp = () => {
 
       <Row>
         <Col md={3} className="left-column border-end border-secondary-subtle">
+          <button
+            onClick={() => router.push("/adopt")}
+            className="chat-btn p-2 rounded mt-4 mb-2 ms-3"
+          >
+            <FaArrowLeft className="me-2" />
+            Till adoptivsidan
+          </button>
+
           <Nav className="flex-column mt-3 mb-3">
             {loadingConversations ? (
               <div id="loader">
@@ -92,7 +102,9 @@ const ChatApp = () => {
           md={9}
           className="chat-page d-flex align-items-center justify-content-center p-3"
         >
-          {activeConversation && <MessageWindow {...activeConversation} />}
+          <p className="fw-light fs-4">
+            Välj en konversation för att börja chatta.
+          </p>
         </Col>
       </Row>
     </Container>
