@@ -1,10 +1,10 @@
 "use client";
 
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import useStreamDocument from "../../../hooks/useStreamDocument";
 import { blogCol } from "@/services/firebase";
-import { Container, Card, Carousel, Row, Col, Button } from "react-bootstrap";
+import { Container, Card, Carousel, Row, Col } from "react-bootstrap";
 import Image from "next/image";
 import { MoonLoader } from "react-spinners";
 import { FaCalendarAlt, FaUser } from "react-icons/fa";
@@ -12,7 +12,6 @@ import { Timestamp } from "firebase/firestore";
 import Link from "next/link";
 
 const BlogDetails = () => {
-  const router = useRouter();
   const params = useParams();
   const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
   const [generalError, setGeneralError] = useState<string | null>(null);
@@ -20,10 +19,12 @@ const BlogDetails = () => {
   const { data, loading } = useStreamDocument(blogCol, slug);
 
   useEffect(() => {
-    if (!data && !loading) {
-      router.push("/404");
+    if (!loading) {
+      if (!data) {
+        setGeneralError("Artikeln hittades inte. Försök igen senare.");
+      }
     }
-  }, [data, loading, router]);
+  }, [data, loading]);
 
   return (
     <Container fluid className="py-3">

@@ -3,7 +3,6 @@
 import { FirebaseError } from "firebase/app";
 import { useState } from "react";
 import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";

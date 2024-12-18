@@ -4,7 +4,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import useStreamDocument from "../../../hooks/useStreamDocument";
 import { petsCol } from "@/services/firebase";
-import { Container, Card, Carousel, Button, Row, Col } from "react-bootstrap";
+import { Container, Card, Carousel, Row, Col } from "react-bootstrap";
 import Image from "next/image";
 import useAuth from "@/hooks/useAuth";
 import { MoonLoader } from "react-spinners";
