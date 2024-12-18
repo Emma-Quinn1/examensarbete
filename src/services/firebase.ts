@@ -1,9 +1,9 @@
-import { NewPost, Post } from "@/types/blog.types";
-import { LocationType } from "@/types/location.types";
-import { Conversation, Message } from "@/types/message.types";
-import { AnimalType, Breed, NewPet, Pet } from "@/types/pet.types";
-import { Upload } from "@/types/upload.types";
-import { NewUser, User } from "@/types/user.types";
+import { NewPost, Post } from "@/types/Blog.types";
+import { LocationType } from "@/types/Location.types";
+import { Conversation, Message } from "@/types/Message.types";
+import { AnimalType, Breed, NewPet, Pet } from "@/types/Pet.types";
+import { Upload } from "@/types/Upload.types";
+import { NewUser, User } from "@/types/User.types";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import {

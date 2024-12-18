@@ -1,6 +1,6 @@
 import { doc, setDoc } from "firebase/firestore";
 import { petsCol } from "@/services/firebase";
-import { NewPet, Pet } from "@/types/pet.types";
+import { NewPet, Pet } from "@/types/Pet.types";
 import { v4 as uuidv4 } from "uuid";
 import useAuth from "./useAuth";
 import useUploadImage from "./useUploadImage";

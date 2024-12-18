@@ -5,7 +5,7 @@ import { Form, Container, Row, Col } from "react-bootstrap";
 import { useForm, SubmitHandler } from "react-hook-form";
 import useGetMessages from "@/hooks/useGetMessages";
 import useMessage from "@/hooks/useMessage";
-import { NewMessage } from "@/types/message.types";
+import { NewMessage } from "@/types/Message.types";
 import useAuth from "@/hooks/useAuth";
 import { useState } from "react";
 import { MoonLoader } from "react-spinners";

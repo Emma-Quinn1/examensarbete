@@ -2,7 +2,7 @@
 
 import React from "react";
 import heroImage from "../../img/hero-dashboard.jpg";
-import Hero from "@/components/hero";
+import Hero from "@/components/Hero";
 import { Card, Container, Col } from "react-bootstrap";
 import Link from "next/link";
 

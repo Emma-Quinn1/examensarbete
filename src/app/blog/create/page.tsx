@@ -1,8 +1,8 @@
 "use client";
 
-import UploadImage from "@/components/uploadImage";
+import UploadImage from "@/components/UploadImage";
 import useBlog from "@/hooks/useBlog";
-import { NewPost } from "@/types/blog.types";
+import { NewPost } from "@/types/Blog.types";
 import { useState } from "react";
 import { Card, Col, Container, Form, Row } from "react-bootstrap";
 import { SubmitHandler, useForm } from "react-hook-form";

@@ -1,6 +1,6 @@
 "use client";
 
-import { CustomPagination } from "@/components/pagination";
+import { CustomPagination } from "@/components/Pagination";
 import useAuth from "@/hooks/useAuth";
 import useGetPets from "@/hooks/useGetPets";
 import { petsCol } from "@/services/firebase";

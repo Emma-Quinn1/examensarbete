@@ -1,5 +1,5 @@
 "use client";
-import { HeroDetails } from "@/types/hero.types";
+import { HeroDetails } from "@/types/Hero.types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";

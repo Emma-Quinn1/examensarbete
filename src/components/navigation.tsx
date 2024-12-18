@@ -12,11 +12,11 @@ import Link from "next/link";
 import useAuth from "@/hooks/useAuth";
 import Image from "next/image";
 import logo from "@/img/133354-removebg-preview.png";
+import ThemeSwitch from "./ThemeSwitch";
 
 const Navigation = () => {
   const { currentUser, userEmail, userName } = useAuth();
   const [showOffcanvas, setShowOffcanvas] = useState(false);
-
   const handleShow = () => setShowOffcanvas(true);
   const handleClose = () => setShowOffcanvas(false);
 
@@ -72,10 +72,12 @@ const Navigation = () => {
         className="offcanvas"
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title className="offcavas-header w-100 d-block text-center p-2 fs-4">
+          <Offcanvas.Title className="offcavas-header w-100 d-flex justify-content-between align-items-center ps-4 pe-5 fs-4">
             {userName || userEmail || "Meny"}
+            <ThemeSwitch />
           </Offcanvas.Title>
         </Offcanvas.Header>
+
         <Offcanvas.Body>
           <ul className="list-group">
             {currentUser ? (

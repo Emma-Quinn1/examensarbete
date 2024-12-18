@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import useUploadImage from "../hooks/useUploadImage";
 import { Alert, ProgressBar } from "react-bootstrap";
-import { UploadImageProps } from "@/types/upload.types";
+import { UploadImageProps } from "@/types/Upload.types";
 
 const UploadImage: React.FC<UploadImageProps> = ({ onUpload }) => {
   const uploadImage = useUploadImage();

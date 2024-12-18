@@ -8,7 +8,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { SubmitHandler, useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
-import { SignupCredentials } from "../../types/user.types";
+import { SignupCredentials } from "../../types/User.types";
 import { FirebaseError } from "firebase/app";
 import { useRouter } from "next/navigation";
 

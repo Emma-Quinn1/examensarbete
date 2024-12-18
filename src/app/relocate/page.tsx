@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import UploadImage from "../../components/uploadImage";
+import UploadImage from "../../components/UploadImage";
 import usePet from "@/hooks/usePet";
 import { Form, Container, Row, Col, Card } from "react-bootstrap";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Breed, NewPet } from "@/types/pet.types";
+import { Breed, NewPet } from "@/types/Pet.types";
 import useGetBreed from "@/hooks/useGetBreed";
 import useGetType from "@/hooks/useGetType";
 import useGetLocations from "@/hooks/useGetLocations";

@@ -8,7 +8,7 @@ import {
 import { conversationCol, messageCol } from "@/services/firebase";
 import { v4 as uuidv4 } from "uuid";
 import useAuth from "./useAuth";
-import { Message, NewMessage } from "@/types/message.types";
+import { Message, NewMessage } from "@/types/Message.types";
 import { useState } from "react";
 
 const useMessage = () => {

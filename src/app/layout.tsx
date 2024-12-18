@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navigation from "@/components/navigation";
-import Footer from "@/components/footer";
-import AuthContextProvider from "@/context/authContext";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import AuthContextProvider from "@/context/AuthContext";
+import { Providers } from "@/app/providers";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,13 +16,29 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.setAttribute('data-bs-theme', 'dark');
+              } else {
+                document.documentElement.removeAttribute('data-bs-theme');
+              }
+        `,
+          }}
+        />
+      </head>
+
       <body>
-        <AuthContextProvider>
-          <Navigation />
-          {children}
-          <Footer />
-        </AuthContextProvider>
+        <Providers>
+          <AuthContextProvider>
+            <Navigation />
+            {children}
+            <Footer />
+          </AuthContextProvider>
+        </Providers>
       </body>
     </html>
   );

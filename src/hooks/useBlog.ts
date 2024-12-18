@@ -3,7 +3,7 @@ import { blogCol } from "@/services/firebase";
 import { v4 as uuidv4 } from "uuid";
 import useAuth from "./useAuth";
 import useUploadImage from "./useUploadImage";
-import { NewPost, Post } from "@/types/blog.types";
+import { NewPost, Post } from "@/types/Blog.types";
 import { useState } from "react";
 
 const useBlog = () => {

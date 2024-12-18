@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { LoginCredentials } from "../../types/user.types";
+import { LoginCredentials } from "../../types/User.types";
 import useAuth from "../../hooks/useAuth";
 import { FirebaseError } from "firebase/app";
 import { useRouter } from "next/navigation";

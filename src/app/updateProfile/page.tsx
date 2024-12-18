@@ -8,7 +8,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import { SubmitHandler, useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
-import { UpdateProfileFormData } from "../../types/user.types";
+import { UpdateProfileFormData } from "../../types/User.types";
 import { FirebaseError } from "firebase/app";
 
 const UpdateProfile = () => {
