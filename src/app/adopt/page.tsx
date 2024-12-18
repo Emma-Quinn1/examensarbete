@@ -61,7 +61,7 @@ const Adopt = () => {
 
   useEffect(() => {
     if (!currentUser) {
-      router.push("/login");
+      router.push("/logIn");
     }
   }, [currentUser, router]);
 
