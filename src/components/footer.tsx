@@ -1,5 +1,5 @@
 "use client";
-import { Col, Container, Nav, Row, Stack } from "react-bootstrap";
+import { Col, Container, Nav, Row } from "react-bootstrap";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/img/133354-removebg-preview.png";
