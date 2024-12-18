@@ -81,7 +81,7 @@ const Adopt = () => {
         )}
 
         <div className="mb-4">
-          <label className="mt-1 mb-2 fs-6 fw-light">
+          <label htmlFor="animalType" className="mt-1 mb-2 fs-6 fw-light">
             Filtrera efter djurtyp
           </label>
           <Select
