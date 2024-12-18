@@ -168,7 +168,7 @@ const Navigation = () => {
                 </li>
                 <li className="offcanvas-links mb-2 p-3">
                   <Link
-                    href="/logIn"
+                    href="/login"
                     onClick={handleClose}
                     className="text-decoration-none navbar-link"
                   >

@@ -63,7 +63,7 @@ const MyRelocations = () => {
 
   useEffect(() => {
     if (!currentUser) {
-      router.push("/logIn");
+      router.push("/login");
     }
   }, [currentUser, router]);
 

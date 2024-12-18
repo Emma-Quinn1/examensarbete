@@ -15,7 +15,7 @@ const Home = () => {
         text="Ge ditt husdjur ett kärleksfullt hem - adoptera eller omplacera idag!"
         links={[
           { href: "/signUp", label: "Bli medlem" },
-          { href: "/logIn", label: "Logga in" },
+          { href: "/login", label: "Logga in" },
         ]}
       />
 

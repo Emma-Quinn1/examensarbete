@@ -17,7 +17,7 @@ const LogOut = () => {
     const logoutUser = async () => {
       await logout();
       await new Promise((r) => setTimeout(r, 1500));
-      router.replace("/logIn");
+      router.replace("/login");
     };
     logoutUser();
   }, [logout, router]);
