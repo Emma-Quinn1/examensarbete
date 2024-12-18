@@ -1,6 +1,6 @@
 "use client";
 
-import UploadImage from "@/components/UploadImage";
+import UploadImage from "../../../components/UploadImage";
 import useBlog from "@/hooks/useBlog";
 import { NewPost } from "@/types/Blog.types";
 import { useState } from "react";

@@ -6,7 +6,7 @@ import useGetPosts from "@/hooks/useGetPosts";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import placeholder from "@/img/thumb-medium.png";
-import { CustomPagination } from "../../components/Pagination";
+import { CustomPagination } from "@/components/Pagination";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 

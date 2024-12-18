@@ -12,7 +12,7 @@ import useGetType from "@/hooks/useGetType";
 import { MultiValue } from "react-select";
 import { OptionType } from "@/types/Pet.types";
 import Select from "react-select";
-import { CustomPagination } from "../../components/Pagination";
+import { CustomPagination } from "@/components/Pagination";
 
 const Adopt = () => {
   const { currentUser } = useAuth();
