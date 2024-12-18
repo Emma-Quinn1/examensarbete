@@ -121,7 +121,7 @@ const Login = () => {
 
                 <div className="text-center mt-5">
                   <Link
-                    href="logIn/forgotPassword"
+                    href="login/forgotPassword"
                     className="forgot-password-link fs-6 fw-lighter"
                   >
                     Glömt ditt lösenord?
