@@ -86,7 +86,7 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   const setEmail = async (email: string, id: string) => {
     if (!currentUser) {
-      throw new Error("Can't update email if you're not logged in");
+      throw new Error("You must log in to new email and verify the adress");
     }
 
     await verifyBeforeUpdateEmail(currentUser, email);
