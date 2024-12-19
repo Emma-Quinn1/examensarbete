@@ -142,7 +142,7 @@ const Navigation = () => {
                     onClick={handleClose}
                     className="text-decoration-none navbar-link"
                   >
-                    Chat
+                    Chatt
                   </Link>
                 </li>
                 <li className="offcanvas-links mb-2 p-3">
@@ -151,7 +151,7 @@ const Navigation = () => {
                     onClick={handleClose}
                     className="text-decoration-none navbar-link"
                   >
-                    Logout
+                    Logga ut
                   </Link>
                 </li>
               </>
