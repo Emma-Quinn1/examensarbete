@@ -18,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="https://fav.farm/🐾" sizes="any" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

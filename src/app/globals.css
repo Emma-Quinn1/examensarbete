@@ -108,8 +108,7 @@ footer {
   font-weight: bolder;
 }
 
-.dashboard-link,
-.meny {
+.dashboard-link {
   color: black;
 }
 
@@ -351,8 +350,7 @@ footer {
   background: rgba(50, 50, 50, 0.8);
 }
 
-[data-bs-theme="dark"] .forgot-password-link,
-.meny {
+[data-bs-theme="dark"] .forgot-password-link {
   color: white;
 }
 

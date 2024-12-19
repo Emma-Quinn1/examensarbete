@@ -58,14 +58,15 @@ const Dashboard = () => {
         <Col xs={11} md={8} lg={6}>
           <Card className="p-4 shadow-lg login-card">
             <Card.Body>
-              <Card.Title className="fw-medium mb-5 fs-2 lh-base text-center meny">
+              <Card.Title className="fw-medium mb-5 fs-2 lh-base text-center">
                 Meny
               </Card.Title>
               <ul className="list-group">
                 <li className="dashboard-links mb-2 p-3 border-bottom border-top border-success-subtle">
                   <Link
                     href="/updateProfile"
-                    className="text-decoration-none dashboard-link fs-5"
+                    className="text-decoration-none dashboard-link fs-5 d-block"
+                    role="button"
                   >
                     Uppdatera profil
                   </Link>
@@ -73,7 +74,8 @@ const Dashboard = () => {
                 <li className="dashboard-links mb-2 p-3 border-bottom border-success-subtle">
                   <Link
                     href="/relocate"
-                    className="text-decoration-none dashboard-link fs-5"
+                    className="text-decoration-none dashboard-link fs-5 d-block"
+                    role="button"
                   >
                     Omplacera
                   </Link>
@@ -81,7 +83,8 @@ const Dashboard = () => {
                 <li className="dashboard-links mb-2 p-3 border-bottom border-success-subtle">
                   <Link
                     href="/adopt"
-                    className="text-decoration-none dashboard-link fs-5"
+                    className="text-decoration-none dashboard-link fs-5 d-block"
+                    role="button"
                   >
                     Adoptera
                   </Link>
@@ -89,7 +92,8 @@ const Dashboard = () => {
                 <li className="dashboard-links mb-2 p-3 border-bottom border-success-subtle">
                   <Link
                     href="/blog/create"
-                    className="text-decoration-none dashboard-link fs-5"
+                    className="text-decoration-none dashboard-link fs-5 d-block"
+                    role="button"
                   >
                     Skapa blogginlägg
                   </Link>
@@ -97,7 +101,8 @@ const Dashboard = () => {
                 <li className="dashboard-links mb-2 p-3 border-bottom border-success-subtle">
                   <Link
                     href="/blog"
-                    className="text-decoration-none dashboard-link fs-5"
+                    className="text-decoration-none dashboard-link fs-5 d-block"
+                    role="button"
                   >
                     Blogg
                   </Link>
@@ -105,7 +110,8 @@ const Dashboard = () => {
                 <li className="dashboard-links mb-2 p-3 border-bottom border-success-subtle">
                   <Link
                     href="/relocate/myRelocations"
-                    className="text-decoration-none dashboard-link fs-5"
+                    className="text-decoration-none dashboard-link fs-5 d-block"
+                    role="button"
                   >
                     Mina omplaceringar
                   </Link>
@@ -113,17 +119,19 @@ const Dashboard = () => {
                 <li className="dashboard-links mb-2 p-3 border-bottom border-success-subtle">
                   <Link
                     href="/message/chatApp"
-                    className="text-decoration-none dashboard-link fs-5"
+                    className="text-decoration-none dashboard-link fs-5 d-block"
+                    role="button"
                   >
-                    Chat
+                    Chatt
                   </Link>
                 </li>
                 <li className="dashboard-links mb-4 p-3 border-bottom border-success-subtle">
                   <Link
                     href="/logOut"
-                    className="text-decoration-none dashboard-link fs-5"
+                    className="text-decoration-none dashboard-link fs-5 d-block"
+                    role="button"
                   >
-                    Logout
+                    Logga ut
                   </Link>
                 </li>
               </ul>

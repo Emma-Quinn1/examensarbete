@@ -6,10 +6,10 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
-  updateEmail,
   updatePassword,
   updateProfile,
   User,
+  verifyBeforeUpdateEmail,
 } from "firebase/auth";
 
 import { createContext, PropsWithChildren, useEffect, useState } from "react";
@@ -89,13 +89,13 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
       throw new Error("Can't update email if you're not logged in");
     }
 
+    await verifyBeforeUpdateEmail(currentUser, email);
+
     const docRef = doc(usersCol, id);
     const data = {
       email: email,
     };
     await updateDoc(docRef, data);
-
-    await updateEmail(currentUser, email);
   };
 
   const setPassword = (password: string) => {
@@ -130,19 +130,31 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
 
       if (user) {
         setUserEmail(user.email);
         setUserName(user.displayName);
+
+        const queryRef = query(usersCol, where("uid", "==", user.uid));
+        const snapshot = await getDocs(queryRef);
+
+        if (!snapshot.empty) {
+          setUserId(snapshot.docs[0].id);
+        } else {
+          setUserId(null);
+        }
       } else {
         setUserEmail(null);
         setUserName(null);
+        setUserId(null);
       }
 
       setLoading(false);
     });
+
+    return unsubscribe;
   }, []);
 
   return (
