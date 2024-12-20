@@ -82,74 +82,74 @@ const Navigation = () => {
           <ul className="list-group">
             {currentUser ? (
               <>
-                <li className="offcanvas-links mb-2 p-3">
+                <li className="offcanvas-links mb-2 ">
                   <Link
                     href="/updateProfile"
                     onClick={handleClose}
-                    className="text-decoration-none navbar-link"
+                    className="text-decoration-none navbar-link d-block p-3"
                   >
                     Uppdatera profil
                   </Link>
                 </li>
-                <li className="offcanvas-links mb-2 p-3">
+                <li className="offcanvas-links mb-2">
                   <Link
                     href="/relocate"
                     onClick={handleClose}
-                    className="text-decoration-none navbar-link"
+                    className="text-decoration-none navbar-link d-block p-3"
                   >
                     Omplacera
                   </Link>
                 </li>
-                <li className="offcanvas-links mb-2 p-3">
+                <li className="offcanvas-links mb-2">
                   <Link
                     href="/adopt"
                     onClick={handleClose}
-                    className="text-decoration-none navbar-link"
+                    className="text-decoration-none navbar-link d-block p-3"
                   >
                     Adoptera
                   </Link>
                 </li>
-                <li className="offcanvas-links mb-2 p-3">
+                <li className="offcanvas-links mb-2">
                   <Link
                     href="/blog/create"
                     onClick={handleClose}
-                    className="text-decoration-none navbar-link"
+                    className="text-decoration-none navbar-link d-block p-3"
                   >
                     Skapa blogginlägg
                   </Link>
                 </li>
-                <li className="offcanvas-links mb-2 p-3">
+                <li className="offcanvas-links mb-2">
                   <Link
                     href="/blog"
                     onClick={handleClose}
-                    className="text-decoration-none navbar-link"
+                    className="text-decoration-none navbar-link d-block p-3"
                   >
                     Blogg
                   </Link>
                 </li>
-                <li className="offcanvas-links mb-2 p-3">
+                <li className="offcanvas-links mb-2">
                   <Link
                     href="/relocate/myRelocations"
                     onClick={handleClose}
-                    className="text-decoration-none navbar-link"
+                    className="text-decoration-none navbar-link d-block p-3"
                   >
                     Mina omplaceringar
                   </Link>
                 </li>
-                <li className="offcanvas-links mb-2 p-3">
+                <li className="offcanvas-links mb-2">
                   <Link
                     href="/message/chatApp"
                     onClick={handleClose}
-                    className="text-decoration-none navbar-link"
+                    className="text-decoration-none navbar-link d-block p-3"
                   >
                     Chatt
                   </Link>
                 </li>
-                <li className="offcanvas-links mb-2 p-3">
+                <li className="offcanvas-links mb-2">
                   <Link
                     href="/logOut"
                     onClick={handleClose}
-                    className="text-decoration-none navbar-link"
+                    className="text-decoration-none navbar-link d-block p-3"
                   >
                     Logga ut
                   </Link>
@@ -157,29 +157,29 @@ const Navigation = () => {
               </>
             ) : (
               <>
-                <li className="offcanvas-links mb-2 p-3">
+                <li className="offcanvas-links mb-2">
                   <Link
                     href="/signUp"
                     onClick={handleClose}
-                    className="text-decoration-none navbar-link"
+                    className="text-decoration-none navbar-link d-block p-3"
                   >
                     Bli medlem
                   </Link>
                 </li>
-                <li className="offcanvas-links mb-2 p-3">
+                <li className="offcanvas-links mb-2">
                   <Link
                     href="/login"
                     onClick={handleClose}
-                    className="text-decoration-none navbar-link"
+                    className="text-decoration-none navbar-link d-block p-3"
                   >
                     Logga in
                   </Link>
                 </li>
-                <li className="offcanvas-links mb-2 p-3">
+                <li className="offcanvas-links mb-2">
                   <Link
                     href="/blog"
                     onClick={handleClose}
-                    className="text-decoration-none navbar-link"
+                    className="text-decoration-none navbar-link d-block p-3"
                   >
                     Blogg
                   </Link>

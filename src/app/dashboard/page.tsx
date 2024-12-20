@@ -61,74 +61,74 @@ const Dashboard = () => {
               <Card.Title className="fw-medium mb-5 fs-2 lh-base text-center">
                 Meny
               </Card.Title>
-              <ul className="list-group">
-                <li className="dashboard-links mb-2 p-3 border-bottom border-top border-success-subtle">
+              <ul>
+                <li className="dashboard-links mb-2 border-bottom border-top border-success-subtle">
                   <Link
                     href="/updateProfile"
-                    className="text-decoration-none dashboard-link fs-5 d-block"
+                    className="text-decoration-none dashboard-link fs-5 d-block p-3"
                     role="button"
                   >
                     Uppdatera profil
                   </Link>
                 </li>
-                <li className="dashboard-links mb-2 p-3 border-bottom border-success-subtle">
+                <li className="dashboard-links mb-2 border-bottom border-success-subtle btn">
                   <Link
                     href="/relocate"
-                    className="text-decoration-none dashboard-link fs-5 d-block"
+                    className="text-decoration-none dashboard-link fs-5 d-block p-3"
                     role="button"
                   >
                     Omplacera
                   </Link>
                 </li>
-                <li className="dashboard-links mb-2 p-3 border-bottom border-success-subtle">
+                <li className="dashboard-links mb-2 border-bottom border-success-subtle">
                   <Link
                     href="/adopt"
-                    className="text-decoration-none dashboard-link fs-5 d-block"
+                    className="text-decoration-none dashboard-link fs-5 d-block p-3"
                     role="button"
                   >
                     Adoptera
                   </Link>
                 </li>
-                <li className="dashboard-links mb-2 p-3 border-bottom border-success-subtle">
+                <li className="dashboard-links mb-2 border-bottom border-success-subtle">
                   <Link
                     href="/blog/create"
-                    className="text-decoration-none dashboard-link fs-5 d-block"
+                    className="text-decoration-none dashboard-link fs-5 d-block p-3 "
                     role="button"
                   >
                     Skapa blogginlägg
                   </Link>
                 </li>
-                <li className="dashboard-links mb-2 p-3 border-bottom border-success-subtle">
+                <li className="dashboard-links mb-2 border-bottom border-success-subtle">
                   <Link
                     href="/blog"
-                    className="text-decoration-none dashboard-link fs-5 d-block"
+                    className="text-decoration-none dashboard-link fs-5 d-block p-3"
                     role="button"
                   >
                     Blogg
                   </Link>
                 </li>
-                <li className="dashboard-links mb-2 p-3 border-bottom border-success-subtle">
+                <li className="dashboard-links mb-2 border-bottom border-success-subtle">
                   <Link
                     href="/relocate/myRelocations"
-                    className="text-decoration-none dashboard-link fs-5 d-block"
+                    className="text-decoration-none dashboard-link fs-5 d-block p-3"
                     role="button"
                   >
                     Mina omplaceringar
                   </Link>
                 </li>
-                <li className="dashboard-links mb-2 p-3 border-bottom border-success-subtle">
+                <li className="dashboard-links mb-2 border-bottom border-success-subtle">
                   <Link
                     href="/message/chatApp"
-                    className="text-decoration-none dashboard-link fs-5 d-block"
+                    className="text-decoration-none dashboard-link fs-5 d-block p-3"
                     role="button"
                   >
                     Chatt
                   </Link>
                 </li>
-                <li className="dashboard-links mb-4 p-3 border-bottom border-success-subtle">
+                <li className="dashboard-links mb-4 border-bottom border-success-subtle">
                   <Link
                     href="/logOut"
-                    className="text-decoration-none dashboard-link fs-5 d-block"
+                    className="text-decoration-none dashboard-link fs-5 d-block p-3"
                     role="button"
                   >
                     Logga ut
