@@ -34,7 +34,10 @@ const useBlog = () => {
         _id: blogId,
         imageUrls,
         path: `posts/${currentUser.uid}/`,
-        author: currentUser.displayName ?? currentUser.email!,
+        author: {
+          uid: currentUser.uid,
+          displayName: currentUser.displayName || "",
+        },
         created_at: serverTimestamp(),
       };
 

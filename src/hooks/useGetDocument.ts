@@ -1,5 +1,13 @@
-import { CollectionReference, doc, getDoc } from "firebase/firestore";
+import {
+  CollectionReference,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from "firebase/firestore";
 import { useCallback, useEffect, useState } from "react";
+import { usersCol } from "@/services/firebase";
 
 const useGetDocument = <T>(
   colRef: CollectionReference<T>,
@@ -25,9 +33,18 @@ const useGetDocument = <T>(
         return;
       }
 
+      const userQueryRef = query(
+        usersCol,
+        where("uid", "==", docSnapshot.get("author.uid"))
+      );
+      const userSnapshot = await getDocs(userQueryRef);
+
       const data = {
         ...docSnapshot.data(),
         _id: docSnapshot.id,
+        author: {
+          email: userSnapshot.docs[0].data().email,
+        },
       };
 
       setData(data);

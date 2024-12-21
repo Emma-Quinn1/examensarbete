@@ -2,7 +2,7 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import useStreamDocument from "../../../hooks/useStreamDocument";
+import useGetDocument from "../../../hooks/useGetDocument";
 import { petsCol } from "@/services/firebase";
 import { Container, Card, Carousel, Row, Col } from "react-bootstrap";
 import Image from "next/image";
@@ -17,11 +17,11 @@ const PetDetails = () => {
   const { currentUser } = useAuth();
   const [generalError, setGeneralError] = useState<string | null>(null);
 
-  const { data, loading } = useStreamDocument(petsCol, slug);
+  const { data, loading } = useGetDocument(petsCol, slug);
 
   const handleSendMessage = async (
     recipientId: string | null,
-    recipientName: string | null
+    recipientName: string | null | undefined
   ) => {
     try {
       if (recipientId && recipientName) {
@@ -51,7 +51,7 @@ const PetDetails = () => {
         </div>
       ) : (
         data && (
-          <Card className="shadow border-0 login-card mt-3 mb-3 mx-lg-4 mx-xl-4 pe-lg-2">
+          <Card className="shadow border-0 login-card mt-3 mb-3 mx-lg-4 mx-xl-4 pe-lg-4 pe-xl-4 slug-adopt-page">
             <Row className="align-items-center">
               <Col lg={5} className="text-center">
                 {data.imageUrls?.length > 0 && (

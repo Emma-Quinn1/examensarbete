@@ -120,12 +120,13 @@ footer {
 .blog-page,
 .relocate-page,
 .full-width-wrapper {
-  min-height: 80vh;
+  min-height: 100vh;
   background: linear-gradient(to bottom, #004d40, #66bb6a);
 }
 
-.slug-blog-page {
-  min-height: 80vh;
+.slug-blog-page,
+.slug-adopt-page {
+  min-height: 100vh;
 }
 
 .login-card,
@@ -181,7 +182,7 @@ footer {
 }
 
 .relocations-page {
-  min-height: 80vh;
+  min-height: 100vh;
 }
 
 .card-slug-page {
@@ -189,7 +190,7 @@ footer {
 }
 
 .chat-page {
-  min-height: 80vh;
+  min-height: 100vh;
   background: linear-gradient(to left, #f6fcfa, rgb(57, 136, 123));
 }
 
@@ -214,7 +215,7 @@ footer {
 }
 
 .content-container {
-  height: 90vh;
+  height: 100vh;
 }
 
 .messages {

@@ -20,6 +20,13 @@ const Navigation = () => {
   const handleShow = () => setShowOffcanvas(true);
   const handleClose = () => setShowOffcanvas(false);
 
+  const displayText = (text: string, maxLength: number) => {
+    if (text.length > maxLength) {
+      return text.slice(0, maxLength) + "...";
+    }
+    return text;
+  };
+
   return (
     <>
       <Navbar expand={false} className="navbar navbar-dark">
@@ -33,7 +40,7 @@ const Navigation = () => {
                 <Image
                   src={logo}
                   alt="Logotype Furever Home"
-                  className="img-fluid navbar-logo me-5"
+                  className="img-fluid navbar-logo me-3"
                   priority
                 />
                 <h1 className="fs-3 text-white d-none d-lg-block fw-light">
@@ -51,7 +58,7 @@ const Navigation = () => {
                 <Image
                   src={logo}
                   alt="Logotype Furever Home"
-                  className="img-fluid navbar-logo me-5"
+                  className="img-fluid navbar-logo me-3"
                   priority
                 />
                 <h1 className="fs-3 text-white d-none d-lg-block fw-light">
@@ -61,7 +68,14 @@ const Navigation = () => {
               </Link>
             </NavbarBrand>
           )}
-          <NavbarToggle aria-controls="offcanvasNavbar" onClick={handleShow} />
+          <div className="d-flex align-items-center">
+            <ThemeSwitch />
+            <NavbarToggle
+              aria-controls="offcanvasNavbar"
+              onClick={handleShow}
+              className="ms-3"
+            />
+          </div>
         </Container>
       </Navbar>
 
@@ -72,14 +86,13 @@ const Navigation = () => {
         className="offcanvas"
       >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title className="offcavas-header w-100 d-flex justify-content-between align-items-center ps-4 pe-5 fs-4">
-            {userName || userEmail || "Meny"}
-            <ThemeSwitch />
+          <Offcanvas.Title className="offcavas-header w-100 d-flex fs-4">
+            {displayText(userName || userEmail || "Meny", 25)}
           </Offcanvas.Title>
         </Offcanvas.Header>
 
         <Offcanvas.Body>
-          <ul className="list-group">
+          <ul className="list-group mt-4">
             {currentUser ? (
               <>
                 <li className="offcanvas-links mb-2 ">

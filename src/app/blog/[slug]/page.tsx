@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import useStreamDocument from "../../../hooks/useStreamDocument";
+import useStreamDocument from "../../../hooks/useGetDocument";
 import { blogCol } from "@/services/firebase";
 import { Container, Card, Carousel, Row, Col } from "react-bootstrap";
 import Image from "next/image";
@@ -10,6 +10,7 @@ import { MoonLoader } from "react-spinners";
 import { FaCalendarAlt, FaUser } from "react-icons/fa";
 import { Timestamp } from "firebase/firestore";
 import Link from "next/link";
+import placeholder from "@/img/thumb-medium.png";
 
 const BlogDetails = () => {
   const params = useParams();
@@ -35,29 +36,39 @@ const BlogDetails = () => {
         </div>
       ) : (
         data && (
-          <Card className="shadow border-0 login-card mt-3 mb-3 mx-lg-4 mx-xl-4 pe-lg-2 slug-blog-page">
+          <Card className="shadow border-0 login-card mt-3 mb-3 mx-lg-4 mx-xl-4 pe-lg-4 pe-xl-4 slug-blog-page">
             <Row className="align-items-center">
               <Col lg={5} className="text-center">
-                {data.imageUrls?.length > 0 && (
-                  <Carousel
-                    indicators={data.imageUrls.length > 1}
-                    controls={data.imageUrls.length > 1}
-                    className="mt-5 mt-lg-0 mt-xl-0"
-                  >
-                    {data.imageUrls.map((imageUrl, index) => (
-                      <Carousel.Item key={index}>
-                        <Image
-                          className="adopt-image"
-                          src={imageUrl}
-                          alt={`Bild ${index + 1}`}
-                          width={400}
-                          height={450}
-                          priority
-                        />
-                      </Carousel.Item>
-                    ))}
-                  </Carousel>
-                )}
+                <Carousel
+                  indicators={data.imageUrls.length > 1}
+                  controls={data.imageUrls.length > 1}
+                  className="mt-5 mt-lg-0 mt-xl-0"
+                >
+                  {data.imageUrls.length === 0 && (
+                    <Carousel.Item key={0}>
+                      <Image
+                        className="adopt-image"
+                        src={placeholder.src}
+                        alt={"Placeholder bild"}
+                        width={400}
+                        height={450}
+                        priority
+                      />
+                    </Carousel.Item>
+                  )}
+                  {data.imageUrls.map((imageUrl, index) => (
+                    <Carousel.Item key={index}>
+                      <Image
+                        className="adopt-image"
+                        src={imageUrl}
+                        alt={`Bild ${index + 1}`}
+                        width={400}
+                        height={450}
+                        priority
+                      />
+                    </Carousel.Item>
+                  ))}
+                </Carousel>
               </Col>
 
               <Col lg={7}>
@@ -83,7 +94,8 @@ const BlogDetails = () => {
 
                 <p className="mb-5 mt-2 fs-5 ps-3 ps-lg-0 ps-xl-0">
                   <FaUser className="me-2 text-secondary" />
-                  <strong>Författare:</strong> {data.author}
+                  <strong>Författare:</strong>{" "}
+                  {data.author.displayName ?? data.author.email}
                 </p>
 
                 <p className="mb-5 mt-2 fs-5 ps-3 ps-lg-0 ps-xl-0">

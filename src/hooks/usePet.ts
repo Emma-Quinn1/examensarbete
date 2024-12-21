@@ -44,7 +44,6 @@ const usePet = () => {
         author: {
           uid: currentUser.uid,
           displayName: currentUser.displayName || "",
-          email: currentUser.email!,
         },
       };
 

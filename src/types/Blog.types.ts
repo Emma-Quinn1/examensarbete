@@ -5,7 +5,11 @@ export type Post = {
   title: string;
   text: string;
   imageUrls: string[];
-  author: string;
+  author: {
+    uid: string;
+    displayName: string;
+    email?: string;
+  };
   created_at: Timestamp | FieldValue;
   path: string;
 };

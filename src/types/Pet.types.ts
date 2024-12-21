@@ -12,7 +12,7 @@ export type Pet = {
   author: {
     uid: string;
     displayName: string;
-    email: string;
+    email?: string;
   };
 };
 
